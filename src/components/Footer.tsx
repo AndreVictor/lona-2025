@@ -2,7 +2,6 @@ import instagram from '../assets/social icon/instagram.svg';
 import facebook from '../assets/social icon/facebook.svg';
 import youtube from '../assets/social icon/youtube.svg';
 import logos from '../assets/logos-desktop-lona-2022.png';
-import logosMobile from '../assets/logos-mobile-lona-2022.png';
 
 export default function Footer() {
   return (

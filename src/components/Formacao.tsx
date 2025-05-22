@@ -1,6 +1,5 @@
 import React from 'react'
 import HeaderSessao from './ui/HeaderSessao'
-import CardMostra from './ui/CardMostras'
 import CardFormacao from './ui/CardFormacao'
 
 export default function Formacao() {
