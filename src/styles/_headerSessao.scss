@@ -1,0 +1,35 @@
+.headerSessao {
+    height: 8rem;
+    position: relative;
+    @include padding;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    p {
+        width: 100%;
+        text-align: right;
+        font-size: 3.6rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    &__arrows {
+        display: flex;
+        align-items: center;
+        gap: 4rem;
+        position: relative;
+        z-index: 1;
+
+        button {
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            font-size: 3.2rem;
+
+            &:hover {
+                color: $vermelho;
+            }
+        }
+    }
+}

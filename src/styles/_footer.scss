@@ -1,0 +1,34 @@
+.footer {
+    height: 40rem;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    @include padding;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+
+        p {
+            font-size: 2.4rem;
+        }
+    }
+
+    &__social-box {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    &__social-icon {
+        height: 2.4rem;
+    }
+
+    &__logos-box {
+        padding: 4rem;
+    }
+}

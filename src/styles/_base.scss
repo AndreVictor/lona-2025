@@ -1,0 +1,77 @@
+$territoriais: #7F61A6;
+$formacao: #476588;
+$especial: #B5416B;
+$homenagem: #846D21;
+$vermelho: #D80010;
+$atravessamentos: #DE5B2D;
+$preto: #000000;
+$main: #514949;
+
+:root {
+    --territoriais: #7F61A6;
+    --formacao: #29416B;
+    --especial: #B5416B;
+    --homenagem: #846D21;
+    --vermelho: #D80010;
+    --atravessamentos: #DE5B2D;
+    --preto: #000000;
+    --main: #514949;
+}
+
+@mixin respond($breakpoint) {
+    @if $breakpoint == phone {
+        @media only screen and (max-width: 37.5em) { @content };    //600px
+    }
+    @if $breakpoint == tab-port {
+        @media only screen and (max-width: 56.25em) { @content };     //900px
+    }
+    @if $breakpoint == tab-land {
+        @media only screen and (max-width: 75em) { @content };    //1200px
+    }
+    @if $breakpoint == big-desktop {
+        @media only screen and (min-width: 112.5em) { @content };    //1800
+    }
+}
+  
+* {
+    margin: 0;
+    padding: 0;
+}
+  
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+  
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+    overflow-x: hidden;
+
+    @include respond(tab-port) {
+        font-size: 50%;
+    }
+    
+    @include respond(big-desktop) {
+        font-size: 75%; //1rem = 12, 12/16
+    }
+}
+
+::selection {
+    background-color: black;
+    color: white;
+}
+
+body {
+    font-family: "Noto Serif", serif;
+    line-height: 1.6;
+    color: $preto;
+    font-size: 1.6rem;
+    background-color: $main;
+}
+
+a {
+    color: $vermelho;
+    text-decoration: underline;
+}

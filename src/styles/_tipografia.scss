@@ -1,0 +1,32 @@
+// Tipografia global
+
+.biz {
+    font-family: "BIZ UDMincho", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  
+.archivo {
+    font-family: "Archivo", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+.noto {
+    font-family: "Noto Serif", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.condensed {
+    font-weight: 900;
+    font-variation-settings: "wdth" 62, "wght" 900;
+}

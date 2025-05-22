@@ -1,0 +1,13 @@
+@mixin padding {
+    padding: 0 4rem;
+}
+
+@mixin grid($columns: repeat(auto-fit, minmax(30rem, 1fr)), $gap: 2rem) {
+  display: grid;
+  grid-template-columns: $columns;
+  gap: $gap;
+
+  @include respond(tab-port) {
+    grid-template-columns: 1fr;
+  }
+}
