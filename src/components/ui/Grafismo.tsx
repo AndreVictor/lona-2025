@@ -18,6 +18,7 @@ export default function Grafismo({ inverted = false }: BackgroundImageProps) {
         height: "100%",
         transform: inverted ? "rotate(180deg)" : undefined,
       }}
+      className='grafismo'
     >
       &nbsp;
     </div>

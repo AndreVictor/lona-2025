@@ -13,7 +13,12 @@ export default function DestaqueSlider() {
         <Grafismo inverted />
       </header>
       <div className="destaqueSlider__slider">
-        <DestaqueCard />
+        <DestaqueCard 
+          imagem="https://2022wp.mostra-lona.com.br/wp-content/uploads/2022/06/Essa-Terra-1.jpeg"
+          sessao="SESSÃO 1"
+          titulo="Nũhũ yãg mũ yõg hãm: essa terra é nossa!"
+          direcao="Isael Maxakali, Sueli Maxakali, Carolina Canguçu, Roberto Romero | MG | 70' | 2020"
+        />
         <div className="destaqueSlider__control">
           <div className="destaqueSlider__bullet-box">
               <span className="destaqueSlider__control-bullet">&nbsp;</span>

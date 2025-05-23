@@ -1,0 +1,3 @@
+.listaSessao {
+    @include grid(repeat(2, 1fr), 0rem);
+}

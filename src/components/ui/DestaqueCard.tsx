@@ -1,21 +1,55 @@
-import React from 'react'
+"use client";
 
-export default function DestaqueCard() {
+import { useState } from "react";
+import Grafismo from "./Grafismo";
+
+type DestaqueCardProps = {
+  imagem: string;
+  sessao: string;
+  titulo: string;
+  direcao: string;
+};
+
+export default function DestaqueCard({
+  imagem,
+  sessao,
+  titulo,
+  direcao,
+}: DestaqueCardProps) {
+  const [hover, setHover] = useState(false);
+
   return (
-    <div className="destaqueSlider__card">
-        <img src="https://2022wp.mostra-lona.com.br/wp-content/uploads/2022/06/adeus_capitao_doc_tita_vincentcarelli01-18430403-768x432.jpeg" alt="" className="destaqueSlider__card-img" />
-        <div className="destaqueSlider__card-info">
-            <p className="destaqueSlider__card-sessao biz uppercase">
-                Sessão 1
-            </p>
-            <h2 className="destaqueSlider__card-title archivo condensed uppercase">
-                Nũhũ yãg mũ yõg hãm: essa terra é nossa!
-            </h2>
-            <p className="destaqueSlider__card-tec biz">
-                Isael Maxakali, Sueli Maxakali, Carolina Canguçu, 
-                Roberto Romero | MG | 70’| 2020
-            </p>
+    <div
+      className="destaqueSlider__card"
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
+      <div className="destaqueSlider__card-content">
+        <div className="destaqueSlider__card-img-box">
+        {hover && <Grafismo />}
+            <img
+            src={
+                hover
+                ? imagem
+                : `/api/bitmap?src=${encodeURIComponent(imagem)}`
+            }
+            alt={titulo}
+            className="destaqueSlider__card-img"
+            />
+            
         </div>
+        <div className="destaqueSlider__card-info">
+          <p className="destaqueSlider__card-sessao biz uppercase">
+            {sessao}
+          </p>
+          <h2 className="destaqueSlider__card-title archivo condensed uppercase">
+            {titulo}
+          </h2>
+          <p className="destaqueSlider__card-tec biz">
+            {direcao}
+          </p>
+        </div>
+      </div>
     </div>
-  )
+  );
 }

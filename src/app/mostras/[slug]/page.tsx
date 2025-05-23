@@ -1,5 +1,5 @@
 import DestaqueSlider from "@/components/ui/DestaqueSlider";
-import ListaCards from "@/components/ui/ListaCards";
+import ListaSessao from "@/components/ui/ListaSessao";
 import MenuFiltrosMostra from "@/components/ui/MenuFiltrosMostra";
 import SidebarMostra from "@/components/ui/SidebarMostra";
 import React from "react";
@@ -16,7 +16,7 @@ export default function Page() {
       <div className="mostra__content">
         <DestaqueSlider /> 
         <MenuFiltrosMostra />
-        <ListaCards />
+        <ListaSessao />
       </div>
     </div>
   );

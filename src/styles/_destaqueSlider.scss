@@ -13,14 +13,36 @@
         }
     }
 
+    &__slider {
+        position: relative;
+    }
+
+    &__card {
+        position: relative;
+    }
+
+    &__card-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    &__card-img-box {
+        height: 40rem;
+        overflow: hidden;
+
+        div {
+            height: 40rem !important;
+        }
+    }
+
     &__card-img {
         width: 100%;
-        height: 40rem;
+        height: 100%;
         object-fit: cover;
+        
     }
 
     &__card-info {
-        background-color: $atravessamentos;
         padding: 1rem 4rem;
 
     }
@@ -33,5 +55,55 @@
     &__card-sessao, &__card-tec {
         font-size: 2rem;
         padding-bottom: 2rem;
-    }   
+    }
+    
+    &__control {
+        position: absolute;
+        top: 40rem;
+        right: 0;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__bullet-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .8rem;
+    }
+
+    &__control-bullet {
+        cursor: pointer;
+        width: 1rem;
+        height: 1rem;
+        background-color: transparent;
+        border-radius: 50%;
+        border: 1px solid $preto;
+    }
+
+    &__arrow-box {
+        margin-left: 1.6rem;
+    }
+
+    &__arrow {
+        cursor: pointer;
+        border: none;
+        background-color: $vermelho;
+        width: 4rem;
+        height: 4rem;
+        font-size: 2rem;
+
+        &--left {
+            transform: rotate(-180deg);
+        }
+
+        &:hover {
+            background-color: $preto;
+            color: $vermelho;
+        }
+    }
+
+    
 }

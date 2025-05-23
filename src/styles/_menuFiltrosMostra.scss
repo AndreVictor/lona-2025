@@ -1,0 +1,181 @@
+.menuFiltrosMostra {
+  height: 4rem;
+  background-color: $vermelho;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+
+  .switch {
+    display: flex;
+    width: 50%;
+    height: 100%;
+
+    button {
+      background: none;
+      border: none;
+      color: inherit;
+      cursor: pointer;
+      font-family: "BIZ UDMincho", serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 2rem;
+      text-transform: uppercase;
+      width: 50%;
+      text-align: left;
+      padding-left: 2rem; 
+      position: relative;
+
+      &::after {
+        content: '';
+        width: 2rem;
+        height: 2rem;
+        border: 1px solid $preto;
+        position: absolute;
+        right: 2rem;
+      }
+
+      &:hover {
+        background-color: $preto;
+        color: $vermelho;
+
+        &::after {
+          border: 1px solid $vermelho;
+        }
+      }
+
+      &.ativo {
+        &::after {
+          background-color: $preto;
+        }
+
+        &:hover {
+          &::after {
+            background-color: $vermelho;
+          }
+        }
+      }
+    }
+  }
+
+  .dropdown {
+    position: relative;
+    height: 100%;
+    width: 25%;
+
+    .dropdown-toggle {
+      background: none;
+      border: none;
+      color: inherit;
+      cursor: pointer;
+      font-family: "BIZ UDMincho", serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 2rem;
+      text-transform: uppercase;
+      height: 100%;
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      justify-content: space-between;
+      padding: 0 2rem;
+      position: relative;
+
+      &:hover {
+        background-color: $preto;
+        color: $vermelho;
+      }
+
+      &.ativo {
+        background-color: $preto;
+        color: $vermelho;
+      }
+
+      .seta {
+        display: inline-block;
+        transition: transform 0.2s ease-in-out;
+        margin-left: 0.5rem;
+
+        &.aberto {
+          transform: rotate(270deg);
+        }
+
+        &:not(.aberto) {
+          transform: rotate(90deg);
+        }
+      }
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: $preto;
+      border: 1px solid $vermelho;
+      z-index: 10;
+      min-width: 22rem;
+      flex-direction: column;
+      gap: 0.5rem;
+      color: $vermelho;
+      font-size: 2rem;
+
+      label {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0 2rem;
+        cursor: pointer;
+        
+        &:hover {
+          background-color: $vermelho;
+          color: $preto;  
+        }
+
+        input[type="checkbox"] {
+          appearance: none;
+          -webkit-appearance: none;
+          background-color: transparent;
+          margin: 0;
+          width: 2rem;
+          height: 2rem;
+          border: 1px solid $vermelho;
+          display: grid;
+          place-content: center;
+          cursor: pointer;
+          transition: all 0.2s ease-in-out;
+
+          &:checked {
+            background-color: $vermelho;
+          }
+
+          &:hover {
+            border: 1px solid $preto;
+          }
+
+          &:checked::before {
+            content: '';
+            width: 1rem;
+            height: 1rem;
+            background-color: $preto;
+            transform: scale(1);
+          }
+
+          &::before {
+            content: '';
+            width: 1rem;
+            height: 1rem;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            background-color: transparent;
+          }
+        }
+      }
+    }
+
+    & .show {
+      display: flex;
+    }
+  }
+}
