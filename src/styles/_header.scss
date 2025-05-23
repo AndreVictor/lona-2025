@@ -31,6 +31,11 @@
                 position: relative;
                 z-index: 1;
             }
+
+            a {
+                color: $preto;
+                text-decoration: none;
+            }
         }
 
         .header__anchor-nav {
@@ -128,6 +133,11 @@
                 font-size: 3.6rem;
                 position: relative;
                 z-index: 1;
+            }
+
+            a {
+                color: $preto;
+                text-decoration: none;
             }
         }
     }
@@ -271,4 +281,31 @@
             right: 0;
         }
     }
+}
+.header.categoria-atravessamentos .header__content {
+  background-color: $atravessamentos;
+}
+
+.header.categoria-homenagem .header__content {
+  background-color: $homenagem;
+}
+
+.header.categoria-especial .header__content {
+  background-color: $especial;
+}
+
+.header.categoria-acervo .header__content {
+  background-color: $acervo;
+}
+
+.header.categoria-territoriais .header__content {
+  background-color: $territoriais;
+}
+
+.header.categoria-formacao .header__content {
+  background-color: $formacao;
+}
+
+.header.categoria-default .header__content {
+  background-color: $main;
 }

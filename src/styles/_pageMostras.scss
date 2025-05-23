@@ -1,0 +1,9 @@
+.mostra {
+    display: grid;
+    grid-template-columns: 5fr 8fr;
+    min-height: 100vh;
+
+    @include respond(tab-port) {
+        grid-template-columns: 1fr;
+    }
+}

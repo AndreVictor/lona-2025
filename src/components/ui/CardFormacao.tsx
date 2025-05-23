@@ -16,9 +16,9 @@ export default function CardFormacao({
 }: CardFormacaoProps) {
   return (
     <div className={`cardFormacao ${formacao.toLowerCase().replace(/\s+/g, '-')}`}>
-        <div className="cardFormacao__hover">
-            <Grafismo />
-        </div>
+      <div className="cardFormacao__hover">
+          <Grafismo />
+      </div>
       {formacao === 'ciclo de conversas' ? (
         <h2 className="cardFormacao__header archivo uppercase condensed">
           CICLO DE<br />

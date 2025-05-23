@@ -9,12 +9,12 @@ import Sobre from "@/components/Sobre";
 
 export default function Home() {
   return (
-    <Layout>
+  <>
       <Vinheta />
       <Programacao />
       <Mostras />
       <Formacao />
       <Sobre />
-    </Layout>
+    </>
   );
 }

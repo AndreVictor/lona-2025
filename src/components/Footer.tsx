@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from 'react';
 import instagram from '../assets/social icon/instagram.svg';
 import facebook from '../assets/social icon/facebook.svg';

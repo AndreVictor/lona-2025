@@ -42,9 +42,20 @@ export default function Header() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // Classe da categoria dinâmica
+  const getCategoryClass = () => {
+    if (pathname.includes("/mostras/atravessamentos")) return "categoria-atravessamentos";
+    if (pathname.includes("/mostras/homenagem")) return "categoria-homenagem";
+    if (pathname.includes("/mostras/especial")) return "categoria-especial";
+    if (pathname.includes("/mostras/acervo")) return "categoria-acervo";
+    if (pathname.includes("/territoriais")) return "categoria-territoriais";
+    if (pathname.includes("/formacao")) return "categoria-formacao";
+    return "categoria-default";
+  };
+
   return (
     <>
-      <header className={`header ${hydrated && isHome && !isScrolled && !isMobile ? "header--home" : "header--compact"}`}>
+      <header className={`header ${hydrated && isHome && !isScrolled && !isMobile ? "header--home" : "header--compact"} ${getCategoryClass()}`}>
           <div className="header__up biz">
             <p>Realização MLB - Movimento de Luta nos Bairros, Vilas e Favelas</p>
             <Grafismo inverted />
@@ -52,7 +63,9 @@ export default function Header() {
           <div className="header__content">
             <Grafismo />
             <div className="header__logo archivo">
-              <p>{`MOSTRA LONA ${!isMobile && isHome && isScrolled ? '– CINEMAS E TERRITÓRIOS' : ''}`}</p>
+              <Link href="/">
+                <p>{`MOSTRA LONA ${!isMobile && (!isHome || isScrolled) ? '– CINEMAS E TERRITÓRIOS' : ''}`}</p>
+              </Link>
             </div>
             {!isMobile && (
               <nav className="header__anchor-nav biz">
@@ -100,19 +113,19 @@ export default function Header() {
             </button>
             <Grafismo inverted />
             <ul>
-              <li><Link href="/a-lona">A Lona ←</Link></li>
-              <li><Link href="/programacao-geral">Programação Geral ←</Link></li>
-              <li><Link href="/territoriais">Sessões Territoriais ←</Link></li>
+              <li><Link href="/a-lona" onClick={() => setIsMenuOpen(false)}>A Lona ←</Link></li>
+              <li><Link href="/programacao-geral" onClick={() => setIsMenuOpen(false)}>Programação Geral ←</Link></li>
+              <li><Link href="/territoriais" onClick={() => setIsMenuOpen(false)}>Sessões Territoriais ←</Link></li>
               <p className="group">MOSTRAS</p>
-              <li><Link href="/mostras/atravessamentos">Atravessamentos ←</Link></li>
-              <li><Link href="/mostras/acervo">Acervo ←</Link></li>
-              <li><Link href="/mostras/homenagem">Homenagem ←</Link></li>
-              <li><Link href="/mostras/especial">Especial ←</Link></li>
+              <li><Link href="/mostras/atravessamentos" onClick={() => setIsMenuOpen(false)}>Atravessamentos ←</Link></li>
+              <li><Link href="/mostras/acervo" onClick={() => setIsMenuOpen(false)}>Acervo ←</Link></li>
+              <li><Link href="/mostras/homenagem" onClick={() => setIsMenuOpen(false)}>Homenagem ←</Link></li>
+              <li><Link href="/mostras/especial" onClick={() => setIsMenuOpen(false)}>Especial ←</Link></li>
               <p className="group">FORMAÇÃO</p>
-              <li><Link href="/formacao/publicacoes">Publicações ←</Link></li>
-              <li><Link href="/formacao/oficinas">Oficinas ←</Link></li>
-              <li><Link href="/formacao/podcast">Podcast ←</Link></li>
-              <li><Link href="/formacao/conversas">Ciclo de Conversas ←</Link></li>
+              <li><Link href="/formacao/publicacoes" onClick={() => setIsMenuOpen(false)}>Publicações ←</Link></li>
+              <li><Link href="/formacao/oficinas" onClick={() => setIsMenuOpen(false)}>Oficinas ←</Link></li>
+              <li><Link href="/formacao/podcast" onClick={() => setIsMenuOpen(false)}>Podcast ←</Link></li>
+              <li><Link href="/formacao/conversas" onClick={() => setIsMenuOpen(false)}>Ciclo de Conversas ←</Link></li>
             </ul>
           </nav>
         )}

@@ -2,6 +2,7 @@ $territoriais: #7F61A6;
 $formacao: #476588;
 $especial: #B5416B;
 $homenagem: #846D21;
+$acervo: white;
 $vermelho: #D80010;
 $atravessamentos: #DE5B2D;
 $preto: #000000;
@@ -75,4 +76,36 @@ body {
 a {
     color: $vermelho;
     text-decoration: underline;
+}
+
+.main--internas {
+    margin-top: calc(-100vh + 8rem);
+}
+
+.main--internas.categoria-atravessamentos {
+  background-color: $atravessamentos;
+}
+
+.main--internas.categoria-homenagem {
+  background-color: $homenagem;
+}
+
+.main--internas.categoria-especial {
+  background-color: $especial;
+}
+
+.main--internas.categoria-acervo {
+  background-color: $acervo;
+}
+
+.main--internas.categoria-territoriais {
+  background-color: $territoriais;
+}
+
+.main--internas.categoria-formacao {
+  background-color: $formacao;
+}
+
+.main--internas.categoria-default {
+  background-color: $main;
 }
