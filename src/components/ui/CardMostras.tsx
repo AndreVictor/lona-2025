@@ -1,8 +1,5 @@
 'use client';
 
-import Grafismo from "./Grafismo";
-
-
 type CardMostraProps = {
   mostra: string;
   texto: string;
@@ -16,19 +13,9 @@ export default function CardMostra({
 }: CardMostraProps) {
   return (
     <div className={`cardMostra ${mostra.toLowerCase().replace(/\s+/g, '-')}`}>
-        <div className="cardMostra__hover">
-            <Grafismo />
-        </div>
-      {mostra === 'mostra atravessamentos' ? (
-        <h2 className="cardMostra__header archivo uppercase condensed">
-          MOSTRA ATRAVESSA<br />
-          <span className="cardMostra__header--right">MENTOS</span>
-        </h2>
-      ) : (
-        <h2 className="cardMostra__header archivo uppercase condensed">
-          {mostra}
-        </h2>
-      )}
+      <h2 className="cardMostra__header archivo uppercase condensed">
+        {mostra}
+      </h2>
       <p className="cardMostra__text">
         {texto}
       </p>

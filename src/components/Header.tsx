@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 import Grafismo from "./ui/Grafismo";
 import Lupa from "./ui/Lupa";
 
@@ -9,8 +10,24 @@ export default function Header() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
 
   const isHome = pathname === "/";
+
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 900);
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => {
@@ -27,7 +44,7 @@ export default function Header() {
 
   return (
     <>
-      <header className={`header ${isHome && !isScrolled ? "header--home" : "header--compact"}`}>
+      <header className={`header ${hydrated && isHome && !isScrolled && !isMobile ? "header--home" : "header--compact"}`}>
           <div className="header__up biz">
             <p>Realização MLB - Movimento de Luta nos Bairros, Vilas e Favelas</p>
             <Grafismo inverted />
@@ -35,16 +52,18 @@ export default function Header() {
           <div className="header__content">
             <Grafismo />
             <div className="header__logo archivo">
-              <p>{`MOSTRA LONA ${isHome && isScrolled ? '– CINEMAS E TERRITÓRIOS' : ''}`}</p>
+              <p>{`MOSTRA LONA ${!isMobile && isHome && isScrolled ? '– CINEMAS E TERRITÓRIOS' : ''}`}</p>
             </div>
-            <nav className="header__anchor-nav biz">
+            {!isMobile && (
+              <nav className="header__anchor-nav biz">
                 <ul>
-                  <li>Programação</li>
-                  <li>Mostras</li>
-                  <li>Formação</li>
-                  <li>Sobre</li>
+                  <li><a href="#programacao">Programação</a></li>
+                  <li><a href="#mostras">Mostras</a></li>
+                  <li><a href="#formacao">Formação</a></li>
+                  <li><a href="#sobre">Sobre</a></li>
                 </ul>
-            </nav>
+              </nav>
+            )}
             <div className="header__btn-box">
               <button className="header__search-btn">
                 <Lupa />
@@ -53,11 +72,13 @@ export default function Header() {
                 <span>&nbsp;</span>
               </button>
             </div>
-          </div>   
-          <div className="header__footer archivo">
-            <Grafismo />
-            <p>CINEMAS E TERRITÓRIOS</p>
           </div>
+          {!isMobile && (
+            <div className="header__footer archivo">
+              <Grafismo />
+              <p>CINEMAS E TERRITÓRIOS</p>
+            </div>
+          )}
           {(
           <nav className={`header__menu biz ${isMenuOpen ? "is-open" : ""}`}>
             <button
@@ -79,19 +100,19 @@ export default function Header() {
             </button>
             <Grafismo inverted />
             <ul>
-              <li>A Lona ←</li>
-              <li>Programação Geral ←</li>
-              <li>Sessões Territoriais ←</li>
+              <li><Link href="/a-lona">A Lona ←</Link></li>
+              <li><Link href="/programacao-geral">Programação Geral ←</Link></li>
+              <li><Link href="/territoriais">Sessões Territoriais ←</Link></li>
               <p className="group">MOSTRAS</p>
-              <li>Atravessamentos ←</li>
-              <li>Acervo ←</li>
-              <li>Homenagem ←</li>
-              <li>Especial ←</li>
+              <li><Link href="/mostras/atravessamentos">Atravessamentos ←</Link></li>
+              <li><Link href="/mostras/acervo">Acervo ←</Link></li>
+              <li><Link href="/mostras/homenagem">Homenagem ←</Link></li>
+              <li><Link href="/mostras/especial">Especial ←</Link></li>
               <p className="group">FORMAÇÃO</p>
-              <li>Publicações ←</li>
-              <li>Oficinas ←</li>
-              <li>Podcast ←</li>
-              <li>Ciclo de Conversas ←</li>
+              <li><Link href="/formacao/publicacoes">Publicações ←</Link></li>
+              <li><Link href="/formacao/oficinas">Oficinas ←</Link></li>
+              <li><Link href="/formacao/podcast">Podcast ←</Link></li>
+              <li><Link href="/formacao/conversas">Ciclo de Conversas ←</Link></li>
             </ul>
           </nav>
         )}

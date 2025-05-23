@@ -1,31 +1,36 @@
-.home {
-
-    &__programacao-card-box {
-        display: flex;
+.home__programacao-card-box {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-color: $vermelho transparent; // estiliza a barra no Firefox
+    scrollbar-width: 8rem;
+  
+    &::-webkit-scrollbar {
+      height: 8px;
     }
-
-    &__programacao-footer {
-        @include padding;
-        margin: 4rem 0;
+  
+    &::-webkit-scrollbar-track {
+      background: transparent;
     }
-
-    &__programacao-btn {
-        font-size: 2.4rem;
-        background-color: transparent;
-        border: none;
-        color: $vermelho;
-        cursor: pointer;
-        transition: all .2s ease-in-out;
-
-        &:hover { 
-            letter-spacing: .2rem;
-        }
+  
+    &::-webkit-scrollbar-thumb {
+      background-color: $vermelho;
+      border-radius: 0;
     }
+  
+    > * {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+    }
+  }
+.home__mostras-box {
+    @include grid(repeat(4, 1fr), 0rem);
+}
+.home__sobre-box {
+    @include grid(repeat(2, 1fr), 0rem);
+}
 
-    &__mostras-box {
-        @include grid(repeat(4, 1fr), 0rem);
-    }
-    &__sobre-box {
-        @include grid(repeat(2, 1fr), 0rem);
-    }
+.home__programacao-card-box > * {
+  flex: 0 0 400px;
+  max-width: 400px;
 }

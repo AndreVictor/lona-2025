@@ -36,6 +36,7 @@
         .header__anchor-nav {
             margin-left: 4rem;
             z-index: 1;
+
             ul {
                 display: flex;
                 gap: 4rem;
@@ -49,6 +50,11 @@
 
                 &:hover {
                     letter-spacing: .2rem;
+                }
+
+                a {
+                    color: $preto;
+                    text-decoration: none;
                 }
             }
         }
@@ -111,6 +117,8 @@
             @include padding;
             width: 100%;
             z-index: 10;
+            /* Added to ensure buttons visible */
+            gap: 1rem;
         }
 
         .header__logo {
@@ -245,6 +253,11 @@
 
             &:hover {
                 letter-spacing: .2rem;
+            }
+
+            a {
+                color: $preto;
+                text-decoration: none;
             }
         }
 

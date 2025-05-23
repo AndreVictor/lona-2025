@@ -5,11 +5,17 @@ import HeaderSessao from './ui/HeaderSessao';
 
 export default function Programacao() {
   const handlePrev = () => {
-    console.log('Anterior');
+    const container = document.querySelector('.home__programacao-card-box');
+    if (container) {
+      container.scrollBy({ left: -400, behavior: 'smooth' });
+    }
   };
-
+  
   const handleNext = () => {
-    console.log('Próximo');
+    const container = document.querySelector('.home__programacao-card-box');
+    if (container) {
+      container.scrollBy({ left: 400, behavior: 'smooth' });
+    }
   };
 
   return (
@@ -21,6 +27,30 @@ export default function Programacao() {
         onNext={handleNext}
       />
       <div className="home__programacao-card-box">
+        <CardProg
+          categoria="MOSTRA ATRAVESSAMENTOS"
+          filme="ADEUS, CAPITÃO"
+          direcao="Vincent Carelli"
+          data="08 maio - 19h"
+          local="Ocupação Maria do Arraial"
+          imagem='https://2022wp.mostra-lona.com.br/wp-content/uploads/2022/06/adeus_capitao_doc_tita_vincentcarelli01-18430403-768x432.jpeg'
+        />
+        <CardProg
+          categoria="MOSTRA ATRAVESSAMENTOS"
+          filme="ADEUS, CAPITÃO"
+          direcao="Vincent Carelli"
+          data="08 maio - 19h"
+          local="Ocupação Maria do Arraial"
+          imagem='https://2022wp.mostra-lona.com.br/wp-content/uploads/2022/06/adeus_capitao_doc_tita_vincentcarelli01-18430403-768x432.jpeg'
+        />
+        <CardProg
+          categoria="MOSTRA ATRAVESSAMENTOS"
+          filme="ADEUS, CAPITÃO"
+          direcao="Vincent Carelli"
+          data="08 maio - 19h"
+          local="Ocupação Maria do Arraial"
+          imagem='https://2022wp.mostra-lona.com.br/wp-content/uploads/2022/06/adeus_capitao_doc_tita_vincentcarelli01-18430403-768x432.jpeg'
+        />
         <CardProg
           categoria="MOSTRA ATRAVESSAMENTOS"
           filme="ADEUS, CAPITÃO"

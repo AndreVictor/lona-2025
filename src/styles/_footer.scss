@@ -7,6 +7,11 @@
     justify-content: center;
     @include padding;
 
+    @include respond(tab-port) {
+        height: auto;
+        padding: 2rem;
+    }
+
     &__header {
         display: flex;
         align-items: center;
@@ -29,6 +34,14 @@
     }
 
     &__logos-box {
-        padding: 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 8rem;
+    }
+
+    &__logos {
+        width: 100%;
+        object-fit: contain;
     }
 }

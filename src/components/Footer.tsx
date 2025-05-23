@@ -1,11 +1,25 @@
+import { useEffect, useState } from 'react';
 import instagram from '../assets/social icon/instagram.svg';
 import facebook from '../assets/social icon/facebook.svg';
 import youtube from '../assets/social icon/youtube.svg';
-import logos from '../assets/logos-desktop-lona-2022.png';
+import logos from '../assets/logos-desktop-lona-2025.png';
+import logosMobile from '../assets/logos-mobile-lona-2025.png';
 
 export default function Footer() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 900);
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
   return (
-    <footer className="footer">
+    <footer className={`footer ${isMobile ? 'footer--mobile' : ''}`}>
       <div className="footer__header">
         <p className='archivo condensed uppercase'>© Mostra Lona {new Date().getFullYear()}</p>
         <div className="footer__social-box">
@@ -21,7 +35,11 @@ export default function Footer() {
       </div>
       </div>
       <div className="footer__logos-box">
-        <img src={logos.src} alt="Regua de logos da Mostra Lona 2024" className="footer__logos" />
+        <img 
+          src={isMobile ? logosMobile.src : logos.src} 
+          alt="Regua de logos da Mostra Lona 2024" 
+          className="footer__logos" 
+        />
       </div>
     </footer>
   );
