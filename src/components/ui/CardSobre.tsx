@@ -1,5 +1,6 @@
 'use client';
 
+import Link from "next/link";
 import Grafismo from "./Grafismo";
 
 
@@ -15,7 +16,7 @@ export default function CardSobre({
   slug,
 }: CardSobreProps) {
   return (
-    <div className={`cardSobre ${sobre.toLowerCase().replace(/\s+/g, '-')}`}>
+    <Link href={`a-lona${slug}`} className={`cardSobre ${sobre.toLowerCase().replace(/\s+/g, '-')}`}>
         <div className="cardSobre__hover">
             <Grafismo />
         </div>
@@ -23,13 +24,14 @@ export default function CardSobre({
           <h2 className="cardSobre__header archivo uppercase condensed">
             {sobre}
           </h2>
-          <p className="cardSobre__text">
-            {texto}
-          </p>
+          <div 
+            className="cardSobre__text"
+            dangerouslySetInnerHTML={{__html:texto}}
+          />
         </div>
         <button className="cardSobre__btn biz">
           → Saiba Mais
         </button>
-    </div>
+    </Link>
   );
 }

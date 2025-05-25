@@ -73,6 +73,10 @@
 
     &__card-text {
         padding: 4rem;
+        
+        p {
+            margin-bottom: 1.6rem;
+        }
     }
 
     &__card, &__equipe {
@@ -81,8 +85,6 @@
 
     &__equipe-content {
         padding: 4rem;
-
-        div {
             display: grid;
             grid-template-columns: 2fr 2fr;
 
@@ -94,6 +96,5 @@
                 grid-template-columns: 1fr;
             }
         }
-    }
 }
     

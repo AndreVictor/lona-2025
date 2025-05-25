@@ -2,7 +2,16 @@ import React from 'react'
 import HeaderSessao from './ui/HeaderSessao'
 import CardFormacao from './ui/CardFormacao'
 
-export default function Formacao() {
+type FormacaoProps = {
+    formacao: {
+      publicacoes: string;
+      oficina: string;
+      podcast: string;
+      cicloDeConversas: string;
+    };
+  };
+
+export default function Formacao({ formacao }: FormacaoProps) {
   return (
     <section className="home__formacao" id="formacao">
         <HeaderSessao
@@ -12,23 +21,23 @@ export default function Formacao() {
         <div className="home__mostras-box">
             <CardFormacao
                 formacao='Publicações'
-                texto='Da primeira edição da Mostra Atravessamentos, realizada em 2020, ao crucial ano de 2022, assistimos à intensificação de uma crise generalizada que atravessa o país de ponta a ponta, afetando de modo desproporcional as famílias mais pobres e periféricas… →'
-                slug='mostra-atravessamentos'
+                texto={`${formacao.publicacoes.slice(0, 260)}...`}
+                slug='publicacoes'
             />
             <CardFormacao
                 formacao='Oficinas'
-                texto='Da primeira edição da Mostra Atravessamentos, realizada em 2020, ao crucial ano de 2022, assistimos à intensificação de uma crise generalizada que atravessa o país de ponta a ponta, afetando de modo desproporcional as famílias mais pobres e periféricas… →'
-                slug='mostra-atravessamentos'
+                texto={`${formacao.oficina.slice(0, 260)}...`}
+                slug='oficinas'
             />
             <CardFormacao
                 formacao='Podcast'
-                texto='Da primeira edição da Mostra Atravessamentos, realizada em 2020, ao crucial ano de 2022, assistimos à intensificação de uma crise generalizada que atravessa o país de ponta a ponta, afetando de modo desproporcional as famílias mais pobres e periféricas… →'
-                slug='mostra-atravessamentos'
+                texto={`${formacao.podcast.slice(0, 260)}...`}
+                slug='podcast'
             />
             <CardFormacao
                 formacao='ciclo de conversas'
-                texto='Da primeira edição da Mostra Atravessamentos, realizada em 2020, ao crucial ano de 2022, assistimos à intensificação de uma crise generalizada que atravessa o país de ponta a ponta, afetando de modo desproporcional as famílias mais pobres e periféricas… →'
-                slug='mostra-atravessamentos'
+                texto={`${formacao.cicloDeConversas.slice(0, 260)}...`}
+                slug='ciclo-de-conversas'
             />
         </div>
     </section>

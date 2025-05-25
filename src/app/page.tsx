@@ -15,8 +15,8 @@ export default async function Home() {
       <Vinheta />
       <Programacao programacoes={data!.programacoes.nodes} />
       <Mostras mostras={data!.contentMostras} />
-      <Formacao />
-      <Sobre />
+      <Formacao formacao={data!.contentFormacao}/>
+      <Sobre sobre={data!.contentALona}/>
     </>
   );
 }

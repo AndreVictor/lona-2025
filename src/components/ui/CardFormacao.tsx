@@ -1,5 +1,6 @@
 'use client';
 
+import Link from "next/link";
 import Grafismo from "./Grafismo";
 
 
@@ -15,7 +16,7 @@ export default function CardFormacao({
   slug,
 }: CardFormacaoProps) {
   return (
-    <div className={`cardFormacao ${formacao.toLowerCase().replace(/\s+/g, '-')}`}>
+    <Link href={`formacao/${slug}`} className={`cardFormacao ${formacao.toLowerCase().replace(/\s+/g, '-')}`}>
       <div className="cardFormacao__hover">
           <Grafismo />
       </div>
@@ -29,9 +30,10 @@ export default function CardFormacao({
           {formacao}
         </h2>
       )}
-      <p className="cardFormacao__text">
-        {texto}
-      </p>
-    </div>
+      <div 
+        className="cardFormacao__text"
+        dangerouslySetInnerHTML={{__html:texto}}
+      />
+    </Link>
   );
 }

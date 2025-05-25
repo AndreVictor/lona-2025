@@ -6,7 +6,6 @@ const query = `
       content
       informacoesLona {
         sobreMlb
-        equipe
       }
     }
     atravessamentos: page(id: "mostra-atravessamentos", idType: URI) {
@@ -24,7 +23,7 @@ const query = `
     publicacoes: page(id: "publicacoes", idType: URI) {
       content
     }
-    oficinas: page(id: "oficinas", idType: URI) {
+    oficina: page(id: "oficina", idType: URI) {
       content
     }
     podcast: page(id: "podcast", idType: URI) {
@@ -162,7 +161,7 @@ export async function getHome() {
     },
     contentFormacao: {
       publicacoes: result.data.publicacoes?.content,
-      oficinas: result.data.oficinas?.content,
+      oficina: result.data.oficina?.content,
       podcast: result.data.podcast?.content,
       cicloDeConversas: result.data.cicloDeConversas?.content,
     },
