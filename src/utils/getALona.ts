@@ -6,6 +6,7 @@ const query = `
       content
       informacoesLona {
         sobreMlb
+        equipe
       }
     }
   }
@@ -23,6 +24,5 @@ export async function getALona() {
     console.warn("Dados não encontrados para a página A Lona");
     return null;
   }
-
   return result.data.page;
 }

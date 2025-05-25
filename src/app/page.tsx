@@ -1,17 +1,19 @@
 'use client';
 
 import Programacao from "@/components/Programacao";
-import Layout from "../components/Layout";
+import { getHome } from "@/utils/getHome";
 import Vinheta from "../components/Vinheta";
 import Mostras from "@/components/Mostras";
 import Formacao from "@/components/Formacao";
 import Sobre from "@/components/Sobre";
 
-export default function Home() {
+export default async function Home() {
+  const data = await getHome();
+  console.log(data);
   return (
   <>
       <Vinheta />
-      <Programacao />
+      <Programacao programacoes={data.programacoes.nodes} />
       <Mostras />
       <Formacao />
       <Sobre />

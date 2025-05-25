@@ -13,7 +13,10 @@
         @include padding;
         padding-top: 4rem;
         border-right: 1px solid $vermelho;
-        height: calc(100vh - 8rem);
+        position: sticky;
+        top: 8rem;
+        height: 100vh;
+        overflow-y: auto;
         overflow-y: auto;
         
         scrollbar-width: thin;
@@ -72,14 +75,24 @@
         padding: 4rem;
     }
 
+    &__card, &__equipe {
+        scroll-margin-top: 8rem;
+    }
+
     &__equipe-content {
         padding: 4rem;
 
-        display: grid;
-        grid-template-columns: 2fr 2fr;
-    
-        @include respond(tab-port) {
-            grid-template-columns: 1fr;
+        div {
+            display: grid;
+            grid-template-columns: 2fr 2fr;
+
+            p {
+                margin-bottom: 1.6rem;
+            }
+        
+            @include respond(tab-port) {
+                grid-template-columns: 1fr;
+            }
         }
     }
 }

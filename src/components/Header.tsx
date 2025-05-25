@@ -100,7 +100,7 @@ export default function Header() {
               onClick={toggleMenu}
               style={{
                 position: "absolute",
-                top: isScrolled ? "2rem" : "8rem",
+                top: isScrolled || !isHome ? "2rem" : "8rem",
                 right: "4rem",
                 zIndex: 1000000,
                 width: "4rem",

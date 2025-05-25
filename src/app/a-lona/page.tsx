@@ -16,28 +16,35 @@ export default async function Page() {
         </h1>
         <nav className="lona__nav">
           <ul>
-            <li><a className="biz" href="#destaque">→ Próxima exibição</a></li>
-            <li><a className="biz" href="#sessões">→ Sessões</a></li>
-            <li><a className="biz" href="#filmes">→ Filmes</a></li>
-            <li><a className="biz" href="#anteriores">→ Edições anteriores</a></li>
+            <li><a className="biz" href="#a-lona">→ Sobre a Lona</a></li>
+            <li><a className="biz" href="#o-mlb">→ Sobre o MLB</a></li>
+            <li><a className="biz" href="#equipe">→ Equipe</a></li>
           </ul>
         </nav>
       </div>
 
       <div className="lona__content">
-        <div className="lona__card">
-          <HeaderSessao nome="sobre" font="archivo" />
+        <div id="a-lona" className="lona__card">
+          <HeaderSessao nome="sobre a lona" font="archivo" />
           <div
             className="lona__card-text"
             dangerouslySetInnerHTML={{ __html: data.content }}
           />
         </div>
 
-        <div className="lona__equipe">
+        <div id="o-mlb" className="lona__card">
           <HeaderSessao nome="Sobre o MLB" font="archivo" />
-          <div className="lona__equipe-content">
-            <p>{data.informacoesLona.sobreMlb}</p>
-          </div>
+          <div 
+            className="lona__card-text"
+            dangerouslySetInnerHTML={{__html: data.informacoesLona.sobreMlb}}
+          />
+        </div>
+        <div id="equipe" className="lona__equipe">
+          <HeaderSessao nome="Equipe" font="archivo" />
+          <div 
+            className="lona__equipe-content"
+            dangerouslySetInnerHTML={{__html: data.informacoesLona.equipe}}
+          />
         </div>
       </div>
     </section>

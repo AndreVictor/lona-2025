@@ -96,10 +96,8 @@ export default function Vinheta() {
 
           void main() {
             vec2 uv = gl_FragCoord.xy / u_resolution;
-            vec2 offset = u_velocity * 0.012 * exp(-distance(uv, u_mouse) * 15.0);
-            vec2 jitteredUV = uv + offset;
 
-            vec4 color = texture2D(u_texture, jitteredUV);
+            vec4 color = texture2D(u_texture, uv);
             float gray = dot(color.rgb, vec3(0.299, 0.587, 0.114));
             float dither = bayer8(gl_FragCoord.xy + rand(gl_FragCoord.xy) * 0.5);
             float result = step(dither, gray);
@@ -143,7 +141,7 @@ export default function Vinheta() {
 
       {!showVideo && (
         <div className="vinheta__info biz">
-          <p>8 — 25 maio <br/>2025</p>
+          <p>27 maio — <br/>8 junho 2025</p>
           <button className="vinheta__btn biz" onClick={() => setShowVideo(true)}>
             → Vinheta
           </button>

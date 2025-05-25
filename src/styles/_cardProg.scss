@@ -45,21 +45,61 @@
     line-height: 2.8rem;
   }
 
-  &--mostra-atravessamentos {
+  &:hover {
+    background-color: $vermelho
+  }
+
+  &--abertura {
+    &:hover {
+      background-color: $vermelho
+    }
+  }
+
+  &--atravessamentos {
     &:hover {
       background-color: $atravessamentos;
     }
   }
 
-  &--mostra-homenagem {
+  &--homenagem {
     &:hover {
       background-color: $homenagem;
     }
   }
 
-  &--mostra-especial {
+  &--especial {
     &:hover {
       background-color: $especial;
+    }
+  }
+  
+  &--acervo {
+    &:hover {
+      background-color: $acervo;
+    }
+  }
+  
+  &--ciclo-de-conversas {
+    &:hover {
+      background-color: $formacao;
+    }
+  }
+  
+  &--podcast {
+    &:hover {
+      background-color: $formacao;
+    }
+  }
+  
+  &--oficinas {
+    &:hover {
+      background-color: $formacao;
+    }
+  }
+  
+  &--publicacoes {
+    &:hover {
+      background-color: $formacao;
     }
   }
 }
