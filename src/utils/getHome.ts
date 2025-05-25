@@ -9,7 +9,13 @@ const query = `
       equipe
     }
   }
-  programacoes(where: {orderby: {field: DATE, order: ASC}}) {
+pages(where: {slugIn: ["mostra-atravessamentos", "mostra-especial", "mostra-homenagem", "mostra-acervo"]}) {
+  nodes {
+    slug
+    content
+  }
+}
+  programacoes(where: {orderby: {field: DATE, order: ASC}}, first: 1000) {
     nodes {
       title
       slug
@@ -128,6 +134,14 @@ export async function getHome() {
     return null;
   }
 
-  console.log(result.data)
-  return result.data;
+  return {
+    contentALona: result.data.page,
+    contentMostras: {
+      atravessamentos: result.data['page(id: "mostra-atravessamentos", idType: URI)']?.content,
+      especial: result.data['page(id: "mostra-especial", idType: URI)']?.content,
+      homenagem: result.data['page(id: "mostra-homenagem", idType: URI)']?.content,
+      acervo: result.data['page(id: "mostra-acervo", idType: URI)']?.content,
+    },
+    programacoes: result.data.programacoes,
+  };
 }

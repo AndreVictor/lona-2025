@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import CardProg from './ui/CardProg';
 import HeaderSessao from './ui/HeaderSessao';
 
@@ -83,6 +82,31 @@ export default function Programacao({ programacoes }: ProgramacaoProps) {
     return '#';
   }
 
+  const hoje = new Date();
+
+  const programacoesFuturas = programacoes
+    .filter((item) => {
+      const data = item.informacoesProgramacao.dataHora;
+      const [dataPart] = data.split(' ');
+      const [dia, mes, ano] = dataPart.split('/');
+
+      const dataItem = new Date(`${ano}-${mes}-${dia}`);
+
+      return dataItem >= hoje;
+    })
+    .sort((a, b) => {
+      const [dataA] = a.informacoesProgramacao.dataHora.split(' ');
+      const [diaA, mesA, anoA] = dataA.split('/');
+      const dateA = new Date(`${anoA}-${mesA}-${diaA}`);
+
+      const [dataB] = b.informacoesProgramacao.dataHora.split(' ');
+      const [diaB, mesB, anoB] = dataB.split('/');
+      const dateB = new Date(`${anoB}-${mesB}-${diaB}`);
+
+      return dateA.getTime() - dateB.getTime();
+    })
+    .slice(0, 8);
+
   return (
     <section id="programacao" className="home__programacao">
       <HeaderSessao
@@ -93,7 +117,7 @@ export default function Programacao({ programacoes }: ProgramacaoProps) {
         onNext={handleNext}
       />
       <div className="home__programacao-card-box">
-        {programacoes.map((item) => {
+        {programacoesFuturas.map((item) => {
           const filmes = item.informacoesProgramacao.sessoes?.flatMap((sessao) => {
             const filmesAcervo = sessao.informacoesMostraAcervo?.filmes?.map(f => f.title) || [];
             const filmesGerais = sessao.informacoesSessao?.filmes?.map(f => f.title) || [];
