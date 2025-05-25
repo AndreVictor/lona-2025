@@ -2,7 +2,16 @@ import React from 'react'
 import HeaderSessao from './ui/HeaderSessao'
 import CardMostra from './ui/CardMostras'
 
-export default function Mostras() {
+type MostrasProps = {
+  mostras: {
+    atravessamentos: string;
+    especial: string;
+    homenagem: string;
+    acervo: string;
+  };
+};
+
+export default function Mostras({ mostras }: MostrasProps) {
   return (
     <section className="home__mostras" id="mostras">
         <HeaderSessao
@@ -11,24 +20,24 @@ export default function Mostras() {
         />
         <div className="home__mostras-box">
             <CardMostra 
-                mostra='mostra atravessamentos'
-                texto='Da primeira edição da Mostra Atravessamentos, realizada em 2020, ao crucial ano de 2022, assistimos à intensificação de uma crise generalizada que atravessa o país de ponta a ponta, afetando de modo desproporcional as famílias mais pobres e periféricas… →'
-                slug='mostra-atravessamentos'
+                mostra="mostra atravessamentos"
+                texto={`${mostras.atravessamentos.slice(0, 260)}...`}
+                slug="atravessamentos"
             />
             <CardMostra 
-                mostra='mostra homenagem'
-                texto='Da primeira edição da Mostra Atravessamentos, realizada em 2020, ao crucial ano de 2022, assistimos à intensificação de uma crise generalizada que atravessa o país de ponta a ponta, afetando de modo desproporcional as famílias mais pobres e periféricas… →'
-                slug='mostra-atravessamentos'
+                mostra="mostra homenagem"
+                texto={`${mostras.homenagem.slice(0, 260)}...`}
+                slug="homenagem"
             />
             <CardMostra 
-                mostra='mostra especial'
-                texto='Da primeira edição da Mostra Atravessamentos, realizada em 2020, ao crucial ano de 2022, assistimos à intensificação de uma crise generalizada que atravessa o país de ponta a ponta, afetando de modo desproporcional as famílias mais pobres e periféricas… →'
-                slug='mostra-atravessamentos'
+                mostra="mostra especial"
+                texto={`${mostras.especial.slice(0, 260)}...`}
+                slug="especial"
             />
             <CardMostra 
-                mostra='mostra acervo'
-                texto='Da primeira edição da Mostra Atravessamentos, realizada em 2020, ao crucial ano de 2022, assistimos à intensificação de uma crise generalizada que atravessa o país de ponta a ponta, afetando de modo desproporcional as famílias mais pobres e periféricas… →'
-                slug='mostra-atravessamentos'
+                mostra="mostra acervo"
+                texto={`${mostras.acervo.slice(0, 260)}...`}
+                slug="acervo"
             />
         </div>
     </section>

@@ -9,12 +9,12 @@ import Sobre from "@/components/Sobre";
 
 export default async function Home() {
   const data = await getHome();
-  console.log(data);
+
   return (
   <>
       <Vinheta />
-      <Programacao programacoes={data.programacoes.nodes} />
-      <Mostras mostras={data.contentMostras} />
+      <Programacao programacoes={data!.programacoes.nodes} />
+      <Mostras mostras={data!.contentMostras} />
       <Formacao />
       <Sobre />
     </>

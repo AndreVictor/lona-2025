@@ -1,5 +1,6 @@
 'use client';
 
+import Link from "next/link";
 import Grafismo from "./Grafismo";
 
 type CardMostraProps = {
@@ -14,7 +15,7 @@ export default function CardMostra({
   slug,
 }: CardMostraProps) {
   return (
-    <div className={`cardMostra ${mostra.toLowerCase().replace(/\s+/g, '-')}`}>
+    <Link href={`mostras/${slug}`} className={`cardMostra ${mostra.toLowerCase().replace(/\s+/g, '-')}`}>
       <div className="cardMostra__hover">
                 <Grafismo />
             </div>
@@ -28,9 +29,10 @@ export default function CardMostra({
                 {mostra}
               </h2>
             )}
-      <p className="cardMostra__text">
-        {texto}
-      </p>
-    </div>
+      <div 
+        className="cardMostra__text"
+        dangerouslySetInnerHTML={{__html:texto}}
+      />
+    </Link>
   );
 }

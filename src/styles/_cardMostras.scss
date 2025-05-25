@@ -6,6 +6,8 @@
     justify-content: space-between;
     border: 1px solid $vermelho;
     position: relative;
+    text-decoration: none;
+    color: $preto;
 
     &__header {
         font-size: 5.6rem;
@@ -13,6 +15,7 @@
         word-break: break-word;
         hyphens: auto;
         overflow-wrap: anywhere;
+        
     }
 
     &__header--right {
