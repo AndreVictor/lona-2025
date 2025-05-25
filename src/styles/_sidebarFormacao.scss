@@ -1,0 +1,96 @@
+.sidebarFormacao {
+    @include padding;
+    padding-top: 4rem;
+    position: sticky;
+    top: 8rem;
+    height: calc(100vh - 8rem);
+    overflow-y: auto;
+
+    scrollbar-width: thin;
+    scrollbar-color: $vermelho transparent;
+    padding-bottom: 8rem;
+    border-right: 1px solid $vermelho;
+
+    &__scroll {
+        width: 100px;
+        height: 100%;
+        background-color: $vermelho;
+        position: absolute;
+        right: 2rem;
+        top: 0;
+    }
+
+    &::-webkit-scrollbar {
+        width: 0.4rem;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+        border: none; // Remove bordas se houver
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $vermelho;
+        border-radius: 0;
+        border: 1px solid $vermelho;
+    }
+
+    &__container {
+      flex: 1;
+      overflow-y: auto;
+      background-color: rgba(0, 0, 0, 0.2);
+      padding: 2rem;
+
+      scrollbar-width: thin;
+      scrollbar-color: $vermelho transparent;
+
+      &::-webkit-scrollbar {
+        width: 0.4rem;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: $vermelho;
+        border-radius: 0;
+      }
+    }
+
+    &__title {
+        font-size: 9.6rem;
+        line-height: 8.6rem;
+        word-break: break-word;
+        hyphens: auto;
+        overflow-wrap: anywhere;
+        margin-bottom: 4rem;
+
+        &--right {
+            display: block;
+            text-align: right;
+        }
+    }
+
+    &__descricao {
+        margin-bottom: 4rem;
+    }
+
+    &__nav {
+        ul li {
+            list-style: none;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: black;
+            font-weight: 900;
+            font-size: 2.4rem;
+            transition: all 0.2s ease-in-out;
+
+            &:hover {
+                letter-spacing: .2rem;
+            }
+        }
+    }
+}

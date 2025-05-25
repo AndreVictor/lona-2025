@@ -8,6 +8,8 @@ type DestaqueCardProps = {
   sessao: string;
   titulo: string;
   direcao: string;
+  data: string;
+  local: string;
 };
 
 export default function DestaqueCard({
@@ -15,6 +17,8 @@ export default function DestaqueCard({
   sessao,
   titulo,
   direcao,
+  data,
+  local
 }: DestaqueCardProps) {
   const [hover, setHover] = useState(false);
 
@@ -26,7 +30,7 @@ export default function DestaqueCard({
     >
       <div className="destaqueSlider__card-content">
         <div className="destaqueSlider__card-img-box">
-        {hover && <Grafismo />}
+        <Grafismo />
             <img
             src={
                 hover
@@ -39,7 +43,7 @@ export default function DestaqueCard({
             
         </div>
         <div className="destaqueSlider__card-info">
-          <p className="destaqueSlider__card-sessao biz uppercase">
+          <p className="destaqueSlider__card-sessao">
             {sessao}
           </p>
           <h2 className="destaqueSlider__card-title archivo condensed uppercase">
@@ -47,6 +51,9 @@ export default function DestaqueCard({
           </h2>
           <p className="destaqueSlider__card-tec biz">
             {direcao}
+          </p>
+          <p className="destaqueSlider__card-data">
+            {local} | {data} 
           </p>
         </div>
       </div>

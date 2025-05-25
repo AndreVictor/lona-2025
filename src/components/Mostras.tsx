@@ -7,6 +7,7 @@ export default function Mostras() {
     <section className="home__mostras" id="mostras">
         <HeaderSessao
             nome="Mostras"
+            font="archivo"
         />
         <div className="home__mostras-box">
             <CardMostra 

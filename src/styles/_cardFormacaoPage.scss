@@ -1,0 +1,33 @@
+.cardFormacaoPage {
+    
+    &__content {
+        @include grid(repeat(2, 1fr), 2rem);
+        padding: 2rem 0;
+        position: relative;
+        z-index: 1;
+    }
+
+    &__img {
+        width: 100%;
+        object-fit: contain;
+
+        &--publicacoes {
+            height: 52rem;
+        }
+    }
+
+    &__link {
+        @include padding;
+        font-size: 2rem;
+        color: $preto;
+        text-decoration: none;
+        transition: all .2s ease-in-out;
+        
+        &:hover {
+            letter-spacing: .1rem;
+        }
+    }
+
+    
+
+}

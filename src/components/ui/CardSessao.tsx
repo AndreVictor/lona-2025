@@ -6,8 +6,7 @@ import Grafismo from "./Grafismo";
 type CardSessaoProps = {
   imagem: string;
   sessao: string;
-  titulo: string;
-  direcao: string;
+  filmes: string[];
   local: string;
   data: string
 };
@@ -15,8 +14,7 @@ type CardSessaoProps = {
 export default function CardSessao({
   imagem,
   sessao,
-  titulo,
-  direcao,
+  filmes,
   local,
   data
 }: CardSessaoProps) {
@@ -33,15 +31,19 @@ export default function CardSessao({
             ? imagem
             : `/api/bitmap?src=${encodeURIComponent(imagem)}`
         }
-        alt={titulo}
+        alt={filmes[0]}
         className="cardSessao__img"
         />
       <div className="cardSessao__content">
         <h6 className="cardSessao__sessao uppercase">{sessao}</h6>
-        <h2 className="cardSessao__title archivo condensed uppercase">{titulo}</h2>
-        <p className="cardSessao__direcao biz">{direcao}</p>
-        <p className="cardSessao__local">{local}</p>
-        <p className="cardSessao__data">{data}</p>
+        <div className="cardSessao__title-box">
+          {filmes.map((filme, index) => (
+            <h2 key={index} className="cardSessao__title archivo condensed uppercase">
+              {filme}
+            </h2>
+          ))}
+        </div>
+        <p className="cardSessao__local">{local} | {data}</p>
       </div>
       <Grafismo />
     </div>

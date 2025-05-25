@@ -2,6 +2,7 @@ import Grafismo from './Grafismo';
 
 type HeaderSessaoProps = {
   nome: string;
+  font: string;
   comArrows?: boolean;
   onPrev?: () => void;
   onNext?: () => void;
@@ -9,12 +10,13 @@ type HeaderSessaoProps = {
 
 export default function HeaderSessao({
   nome,
+  font,
   comArrows = false,
   onPrev,
   onNext,
 }: HeaderSessaoProps) {
   return (
-    <div className="headerSessao">
+    <div className={`headerSessao ${font}`}>
       <Grafismo inverted />
       {comArrows && (
           <div className="headerSessao__arrows">
@@ -26,7 +28,7 @@ export default function HeaderSessao({
           </button>
         </div>
       )}
-      <p className='archivo uppercase condensed'>{nome}</p>
+      <p className={`${font} uppercase condensed`}>{nome}</p>
     </div>
   );
 }

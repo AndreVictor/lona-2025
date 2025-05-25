@@ -1,22 +1,17 @@
-.cardSessao {
+.cardFilme {
     border: 1px solid $vermelho;
     position: relative;
     overflow: hidden;
 
-    @include grid(repeat(2, 1fr), 0rem);
-
     &__img {
         width: 100%;
-        height: 30rem;
+        height: 25rem;
         object-fit: cover;
         mix-blend-mode: multiply;
     }
 
     &__content {
         padding: 2rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
     }
 
     &__sessao {

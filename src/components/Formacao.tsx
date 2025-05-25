@@ -7,6 +7,7 @@ export default function Formacao() {
     <section className="home__formacao" id="formacao">
         <HeaderSessao
             nome="Formação"
+            font="archivo"
         />
         <div className="home__mostras-box">
             <CardFormacao

@@ -22,6 +22,7 @@ export default function Programacao() {
     <section id="programacao" className="home__programacao">
       <HeaderSessao
         nome="Programação"
+        font="archivo"
         comArrows
         onPrev={handlePrev}
         onNext={handleNext}

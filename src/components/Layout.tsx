@@ -14,6 +14,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     if (pathname.includes("/mostras/acervo")) return "categoria-acervo";
     if (pathname.includes("/territoriais")) return "categoria-territoriais";
     if (pathname.includes("/formacao")) return "categoria-formacao";
+    if (pathname.includes("/a-lona")) return "categoria-a-lona";
     return "categoria-default";
   };
 

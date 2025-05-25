@@ -1,8 +1,12 @@
 "use client";
 import React, { useState } from "react";
 
-export default function MenuFiltrosMostra() {
-  const [filtro, setFiltro] = useState("sessoes");
+type MenuFiltrosMostraProps = {
+  filtro: string;
+  setFiltro: (value: string) => void;
+};
+
+export default function MenuFiltrosMostra({ filtro, setFiltro }: MenuFiltrosMostraProps) {
   const [datasSelecionadas, setDatasSelecionadas] = useState<string[]>([]);
   const [locaisSelecionados, setLocaisSelecionados] = useState<string[]>([]);
 

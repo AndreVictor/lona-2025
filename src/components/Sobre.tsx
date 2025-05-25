@@ -7,6 +7,7 @@ export default function Sobre() {
     <section className="home__sobre" id="sobre">
         <HeaderSessao
             nome="Sobre"
+            font="archivo"
         />
         <div className="home__sobre-box">
             <CardSobre

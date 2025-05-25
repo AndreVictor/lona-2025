@@ -6,6 +6,7 @@
     flex-direction: column;
     justify-content: center;
     @include padding;
+    border-top: 1px solid $vermelho;
 
     @include respond(tab-port) {
         height: auto;

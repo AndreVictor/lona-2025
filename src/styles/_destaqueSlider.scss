@@ -19,6 +19,18 @@
 
     &__card {
         position: relative;
+        overflow: hidden;
+        
+        .grafismo {
+            left: -100% !important;
+            transition: all .2s ease-in-out;
+        }
+
+        &:hover {
+            .grafismo {
+                left: 0% !important;
+            }
+        }
     }
 
     &__card-content {
@@ -52,8 +64,20 @@
         line-height: 2.8rem;
     }
     
-    &__card-sessao, &__card-tec {
+    &__card-tec {
         font-size: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    &__card-sessao {
+        font-size: 1.4rem;
+        font-weight: 700;
+        padding-bottom: 2rem;
+    }
+
+    &__card-data {
+        font-size: 1.4rem;
+        font-weight: 700;
         padding-bottom: 2rem;
     }
     
