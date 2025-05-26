@@ -29,3 +29,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 export async function generateStaticParams() {
   return slugsValidos.map(slug => ({ slug }));
 } */
+
+  export default function Page() {
+  return <div>Página temporariamente fora do ar.</div>;
+}
