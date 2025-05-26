@@ -151,15 +151,18 @@ export default function Vinheta() {
       {showVideo && (
         <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", background: "black", zIndex: 2 }}>
           <iframe
-            width="100%"
-            height="100%"
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
-            title="Vinheta Mostra Lona"
+            src="https://player.vimeo.com/video/1087279849?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1"
+            style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
             frameBorder="0"
-            allow="autoplay; fullscreen"
+            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+            title="Vinheta :: LONA :: 2025"
             allowFullScreen
           />
-          <button onClick={() => setShowVideo(false)} style={{ position: "absolute", top: 20, right: 20, fontSize: "1.6rem", padding: "0.5rem 1rem", background: "white", color: "black" }}>
+          <button 
+            onClick={() => setShowVideo(false)} 
+            style={{ position: "absolute", top: 20, right: 20, fontSize: "1.6rem", padding: "0.5rem 1rem", background: "white", color: "black" }}
+            className="vinheta__close-btn biz uppercase"
+          >
             Fechar
           </button>
         </div>

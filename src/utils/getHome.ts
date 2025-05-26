@@ -49,30 +49,45 @@ const query = `
             ... on Territorial {
               title
               slug
+              informacoesTerritoriais {
+                localizacaoPrecisa
+              }
             }
           }
           podcast {
             ... on Podcast {
               title
               slug
+              informacoesPodcast {
+                participantes
+              }
             }
           }
           oficina {
             ... on Oficina {
               title
               slug
+              informacoesOficinas {
+                ministrante
+              }
             }
           }
           publicacao {
             ... on Publicacao {
               title
               slug
+              informacoesPublicacoes {
+                autoras
+              }
             }
           }
           cicloDeConversa {
             ... on Conversa {
               title
               slug
+              informacoesConversas {
+                participantes
+              }
             }
           }
           sessoes {

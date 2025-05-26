@@ -1,42 +1,46 @@
 "use client";
-import React from "react";
-import CardFilme from "./CardFilme";
 
-export default function ListaFilmes() {
+import CardFilme from "./CardFilme";
+import { formatDate } from "@/utils/formatDate";
+
+type ListaFilmesProps = {
+  sessoes: any[];
+  nomeMostra: string;
+};
+
+export default function ListaFilmes({ sessoes, nomeMostra }: ListaFilmesProps) {
+  const filmes = sessoes.flatMap(sessao =>
+    sessao.informacoesSessao?.filmes?.map((filme: any) => ({
+      imagem: filme.featuredImage?.node?.sourceUrl || "/placeholder.png",
+      titulo: filme.title,
+      direcao: filme.informacoesFilmes?.fichaTecMini || "",
+      sessao: sessao.title,
+      data: sessao.informacoesSessao?.dataInicial
+        ? formatDate(sessao.informacoesSessao.dataInicial, true)
+        : "",
+      local: sessao.informacoesSessao?.local || "",
+      link: `/mostras/${nomeMostra}/sessao/${sessao.slug}`
+    })) || []
+  );
+
   return (
     <section className="listaFilmes" id="filmes">
-      <CardFilme 
-        imagem="https://2022wp.mostra-lona.com.br/wp-content/uploads/2022/06/Essa-Terra-1.jpeg"
-        sessao="SESSÃO 1"
-        titulo="Nũhũ yãg mũ yõg hãm: essa terra é nossa!"
-        direcao="Isael Maxakali, Sueli Maxakali, Carolina Canguçu, Roberto Romero | MG | 70' | 2020"
-        local="Ocupação Maria do Arraial"
-        data="08 maio – 19h"
-      />
-      <CardFilme 
-        imagem="https://2022wp.mostra-lona.com.br/wp-content/uploads/2022/06/Essa-Terra-1.jpeg"
-        sessao="SESSÃO 1"
-        titulo="Nũhũ yãg mũ yõg hãm: essa terra é nossa!"
-        direcao="Isael Maxakali, Sueli Maxakali, Carolina Canguçu, Roberto Romero | MG | 70' | 2020"
-        local="Ocupação Maria do Arraial"
-        data="08 maio – 19h"
-      />
-      <CardFilme 
-        imagem="https://2022wp.mostra-lona.com.br/wp-content/uploads/2022/06/Essa-Terra-1.jpeg"
-        sessao="SESSÃO 1"
-        titulo="Nũhũ yãg mũ yõg hãm: essa terra é nossa!"
-        direcao="Isael Maxakali, Sueli Maxakali, Carolina Canguçu, Roberto Romero | MG | 70' | 2020"
-        local="Ocupação Maria do Arraial"
-        data="08 maio – 19h"
-      />
-      <CardFilme 
-        imagem="https://2022wp.mostra-lona.com.br/wp-content/uploads/2022/06/Essa-Terra-1.jpeg"
-        sessao="SESSÃO 1"
-        titulo="Nũhũ yãg mũ yõg hãm: essa terra é nossa!"
-        direcao="Isael Maxakali, Sueli Maxakali, Carolina Canguçu, Roberto Romero | MG | 70' | 2020"
-        local="Ocupação Maria do Arraial"
-        data="08 maio – 19h"
-      />
+      {filmes.length > 0 ? (
+        filmes.map((filme, index) => (
+          <CardFilme
+            key={index}
+            imagem={filme.imagem}
+            sessao={filme.sessao}
+            titulo={filme.titulo}
+            direcao={filme.direcao}
+            local={filme.local}
+            data={filme.data}
+            link={filme.link}
+          />
+        ))
+      ) : (
+        <p>Nenhum filme encontrado.</p>
+      )}
     </section>
   );
 }

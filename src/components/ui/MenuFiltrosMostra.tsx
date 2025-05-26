@@ -1,20 +1,20 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 
 type MenuFiltrosMostraProps = {
   filtro: string;
   setFiltro: (value: string) => void;
+  datas: string[];
+  locais: string[];
+  datasSelecionadas: string[];
+  setDatasSelecionadas: (value: string[]) => void;
+  locaisSelecionados: string[];
+  setLocaisSelecionados: (value: string[]) => void;
 };
 
-export default function MenuFiltrosMostra({ filtro, setFiltro }: MenuFiltrosMostraProps) {
-  const [datasSelecionadas, setDatasSelecionadas] = useState<string[]>([]);
-  const [locaisSelecionados, setLocaisSelecionados] = useState<string[]>([]);
-
-  const [dropdownDatasOpen, setDropdownDatasOpen] = useState(false);
-  const [dropdownLocaisOpen, setDropdownLocaisOpen] = useState(false);
-
-  const datas = ["08 maio", "09 maio", "10 maio", "11 maio", "12 maio", "13 maio"];
-  const locais = ["Ocupação Maria do Arraial", "Cine Santa Tereza"];
+export default function MenuFiltrosMostra({ filtro, setFiltro, datas, locais, datasSelecionadas, setDatasSelecionadas, locaisSelecionados, setLocaisSelecionados }: MenuFiltrosMostraProps) {
+  const [dropdownDatasOpen, setDropdownDatasOpen] = React.useState(false);
+  const [dropdownLocaisOpen, setDropdownLocaisOpen] = React.useState(false);
 
   const toggleSelecaoUnica = (
     item: string,
@@ -60,7 +60,12 @@ export default function MenuFiltrosMostra({ filtro, setFiltro }: MenuFiltrosMost
               <input
                 type="checkbox"
                 checked={datasSelecionadas.includes(data)}
-                onChange={() => toggleSelecaoUnica(data, datasSelecionadas, setDatasSelecionadas, setDropdownDatasOpen)}
+                onChange={() => toggleSelecaoUnica(
+                  data,
+                  datasSelecionadas,
+                  setDatasSelecionadas,
+                  setDropdownDatasOpen
+                )}
               />
               {data}
             </label>
@@ -81,7 +86,12 @@ export default function MenuFiltrosMostra({ filtro, setFiltro }: MenuFiltrosMost
               <input
                 type="checkbox"
                 checked={locaisSelecionados.includes(local)}
-                onChange={() => toggleSelecaoUnica(local, locaisSelecionados, setLocaisSelecionados, setDropdownLocaisOpen)}
+                onChange={() => toggleSelecaoUnica(
+                  local,
+                  locaisSelecionados,
+                  setLocaisSelecionados,
+                  setDropdownLocaisOpen
+                )}
               />
               {local}
             </label>

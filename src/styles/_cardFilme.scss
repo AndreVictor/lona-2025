@@ -2,6 +2,12 @@
     border: 1px solid $vermelho;
     position: relative;
     overflow: hidden;
+    height: 100%;
+
+    &__link {
+        text-decoration: none;
+        color: $preto;
+    }
 
     &__img {
         width: 100%;

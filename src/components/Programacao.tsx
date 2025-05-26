@@ -16,11 +16,11 @@ type ProgramacaoProps = {
       dataHora: string;
       local: string;
       categoria: string;
-      sessoesTerritoriais?: { title: string; slug: string }[] | null;
-      podcast?: { title: string; slug: string }[] | null;
-      oficina?: { title: string; slug: string }[] | null;
-      publicacao?: { title: string; slug: string }[] | null;
-      cicloDeConversa?: { title: string; slug: string }[] | null;
+      sessoesTerritoriais?: { title: string; slug: string; informacoesTerritoriais?: { localizacaoPrecisa?: string } }[] | null;
+      podcast?: { title: string; slug: string; informacoesPodcast?: { participantes?: string } }[] | null;
+      oficina?: { title: string; slug: string; informacoesOficinas?: { ministrante?: string } }[] | null;
+      publicacao?: { title: string; slug: string; informacoesPublicacoes?: { autoras?: string } }[] | null;
+      cicloDeConversa?: { title: string; slug: string; informacoesConversas?: { participantes?: string } }[] | null;
       sessoes?: {
         title: string;
         slug: string;
@@ -118,11 +118,31 @@ export default function Programacao({ programacoes }: ProgramacaoProps) {
       />
       <div className="home__programacao-card-box">
         {programacoesFuturas.map((item) => {
-          const filmes = item.informacoesProgramacao.sessoes?.flatMap((sessao) => {
-            const filmesAcervo = sessao.informacoesMostraAcervo?.filmes?.map(f => f.title) || [];
-            const filmesGerais = sessao.informacoesSessao?.filmes?.map(f => f.title) || [];
-            return [...filmesAcervo, ...filmesGerais];
-          }) || ['Filme não identificado'];
+          const filmes = (
+            item.informacoesProgramacao.sessoesTerritoriais?.map(
+              (t) => t.informacoesTerritoriais?.localizacaoPrecisa
+            ) ??
+            item.informacoesProgramacao.cicloDeConversa?.map(
+              (c) => c.informacoesConversas?.participantes
+            ) ??
+            item.informacoesProgramacao.podcast?.map(
+              (p) => p.informacoesPodcast?.participantes
+            ) ??
+            item.informacoesProgramacao.oficina?.map(
+              (o) => o.informacoesOficinas?.ministrante
+            ) ??
+            item.informacoesProgramacao.publicacao?.map(
+              (p) => p.informacoesPublicacoes?.autoras
+            ) ??
+            item.informacoesProgramacao.sessoes?.flatMap((sessao) => {
+              const filmesAcervo =
+                sessao.informacoesMostraAcervo?.filmes?.map((f) => f.title) || [];
+              const filmesGerais =
+                sessao.informacoesSessao?.filmes?.map((f) => f.title) || [];
+              return [...filmesAcervo, ...filmesGerais];
+            }) ??
+            []
+          ).filter((f): f is string => Boolean(f));
 
           return (
             <CardProg

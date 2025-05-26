@@ -3,10 +3,10 @@ import React from "react";
 
 type SidebarMostraProps = {
   mostra: string;
-  descricao: string;
+  content: string;
 };
 
-export default function SidebarMostra({ mostra, descricao }: SidebarMostraProps) {
+export default function SidebarMostra({ mostra, content }: SidebarMostraProps) {
   return (
     <aside className="sidebarMostra">
       {mostra === 'mostra atravessamentos' ? (
@@ -19,9 +19,11 @@ export default function SidebarMostra({ mostra, descricao }: SidebarMostraProps)
           {mostra}
         </h1>
       )}
-      <p className="sidebarMostra__descricao">
-        {descricao}
-      </p>
+      <div 
+        className="sidebarMostra__descricao"
+        dangerouslySetInnerHTML={{ __html: content }}
+      >
+      </div>
       <nav className="sidebarMostra__nav">
         <ul>
           <li><a className="biz" href="#destaque">→ Próxima exibição</a></li>

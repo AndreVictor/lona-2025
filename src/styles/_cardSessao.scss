@@ -3,6 +3,11 @@
     position: relative;
     overflow: hidden;
 
+    &__link {
+        color: $preto;
+        text-decoration: none;
+    }
+
     @include grid(repeat(2, 1fr), 0rem);
 
     &__img {
