@@ -58,7 +58,7 @@ export default function PageMostras({ slug, content, sessoes }: PageMostrasProps
   return (
     <div className={`mostra mostra--${slug}`}>
       <div className="mostra__sidebar">
-        <SidebarMostra mostra={`mostra ${slug}`} content={content} />
+        <SidebarMostra mostra={slug} content={content} />
       </div>
       <div className="mostra__content">
         <DestaqueSlider sessoes={sessoesFiltradas} nomeMostra={slug} />

@@ -4,7 +4,7 @@ type Mostras = "atravessamentos" | "acervo" | "homenagem" | "especial";
 
 const queryNameMap: Record<Mostras, string> = {
   atravessamentos: "atravessamentos",
-  acervo: "acervo",
+  acervo: "mostraacervos",
   homenagem: "homenagens",
   especial: "especiais",
 };
@@ -85,8 +85,15 @@ export async function getMostra(nomeMostra: Mostras) {
     throw new Error(`Mostra ${nomeMostra} não encontrada`);
   }
 
+  const informacoesKey = isAcervo ? "informacoesMostraAcervo" : "informacoesSessao";
+
+  const nodesNormalizados = nodes.map((node: any) => ({
+    ...node,
+    informacoesSessao: node[informacoesKey],
+  }));
+
   return {
-    nodes,
+    nodes: nodesNormalizados,
     pageContent: page.content,
   };
 }
