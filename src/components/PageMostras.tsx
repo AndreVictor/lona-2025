@@ -39,12 +39,11 @@ export default function PageMostras({ slug, content, sessoes }: PageMostrasProps
   );
 
   const sessoesFiltradas = sessoes.filter(sessao => {
-    const data = sessao.informacoesSessao?.dataInicial
-      ? formatDate(sessao.informacoesSessao.dataInicial, false)
-      : null;
+    const data = formatDate(sessao.informacoesSessao?.dataInicial, false) ?? "";
     const local = sessao.informacoesSessao?.local;
 
-    const filtraPorData = datasSelecionadas.length === 0 || datasSelecionadas.includes(data);
+    const filtraPorData =
+      datasSelecionadas.length === 0 || (data && datasSelecionadas.includes(data));
     const filtraPorLocal = locaisSelecionados.length === 0 || locaisSelecionados.includes(local);
 
     return filtraPorData && filtraPorLocal;

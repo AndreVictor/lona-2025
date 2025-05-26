@@ -1,10 +1,17 @@
 import PageMostras from "@/components/PageMostras";
 import { getMostra } from "@/utils/getMostra";
 
-export default async function Page({ params }: { params: { slug: string } }) {
-  const data = await getMostra(params.slug, params.slug);
+const slugsValidos = ["atravessamentos", "acervo", "homenagem", "especial"] as const;
+type Mostras = (typeof slugsValidos)[number];
 
-  if (!data) {
+export default async function Page({ params }: { params: { slug: string } }) {
+  if (!slugsValidos.includes(params.slug as Mostras)) {
+    return <div>Mostra não encontrada</div>;
+  }
+
+  const data = await getMostra(params.slug as Mostras);
+
+  if (!data || !data.nodes) {
     return <div>Erro ao carregar os dados da mostra.</div>;
   }
 

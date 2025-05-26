@@ -120,19 +120,19 @@ export default function Programacao({ programacoes }: ProgramacaoProps) {
         {programacoesFuturas.map((item) => {
           const filmes = (
             item.informacoesProgramacao.sessoesTerritoriais?.map(
-              (t) => t.informacoesTerritoriais?.localizacaoPrecisa
+              (t) => t.title
             ) ??
             item.informacoesProgramacao.cicloDeConversa?.map(
-              (c) => c.informacoesConversas?.participantes
+              (c) => c.title
             ) ??
             item.informacoesProgramacao.podcast?.map(
-              (p) => p.informacoesPodcast?.participantes
+              (p) => p.title
             ) ??
             item.informacoesProgramacao.oficina?.map(
-              (o) => o.informacoesOficinas?.ministrante
+              (o) => o.title
             ) ??
             item.informacoesProgramacao.publicacao?.map(
-              (p) => p.informacoesPublicacoes?.autoras
+              (p) => p.title
             ) ??
             item.informacoesProgramacao.sessoes?.flatMap((sessao) => {
               const filmesAcervo =
