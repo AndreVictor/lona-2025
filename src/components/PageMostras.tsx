@@ -7,15 +7,16 @@ import ListaFilmes from "@/components/ui/ListaFilmes";
 import ListaSessao from "@/components/ui/ListaSessao";
 import MenuFiltrosMostra from "@/components/ui/MenuFiltrosMostra";
 import SidebarMostra from "@/components/ui/SidebarMostra";
-import { getInfo } from "@/utils/getInfo";
 
 type PageMostrasProps = {
   slug: string;
   content: string;
   sessoes: any[];
+  infoKey: string;
 };
 
-export default function PageMostras({ slug, content, sessoes }: PageMostrasProps) {
+export default function PageMostras(props: PageMostrasProps) {
+  const { slug, content, sessoes, infoKey } = props;
   const [filtro, setFiltro] = useState("sessoes");
   const [datasSelecionadas, setDatasSelecionadas] = useState<string[]>([]);
   const [locaisSelecionados, setLocaisSelecionados] = useState<string[]>([]);
@@ -24,7 +25,7 @@ export default function PageMostras({ slug, content, sessoes }: PageMostrasProps
     new Set(
       (sessoes || [])
         .map(sessao => {
-          const info = getInfo(sessao);
+          const info = sessao[infoKey];
           const dataBruta = info?.dataInicial;
           return dataBruta ? formatDate(dataBruta, false) : null;
         })
@@ -36,7 +37,7 @@ export default function PageMostras({ slug, content, sessoes }: PageMostrasProps
     new Set(
       (sessoes || [])
         .map(sessao => {
-          const info = getInfo(sessao);
+          const info = sessao[infoKey];
           return info?.local;
         })
         .filter(Boolean)
@@ -44,13 +45,14 @@ export default function PageMostras({ slug, content, sessoes }: PageMostrasProps
   );
 
   const sessoesFiltradas = (sessoes || []).filter(sessao => {
-    const info = getInfo(sessao);
+    const info = sessao[infoKey];
     const data = formatDate(info?.dataInicial, false) ?? "";
     const local = info?.local;
 
     const filtraPorData =
       datasSelecionadas.length === 0 || (data && datasSelecionadas.includes(data));
-    const filtraPorLocal = locaisSelecionados.length === 0 || locaisSelecionados.includes(local);
+    const filtraPorLocal =
+      locaisSelecionados.length === 0 || locaisSelecionados.includes(local);
 
     return filtraPorData && filtraPorLocal;
   });
@@ -58,7 +60,7 @@ export default function PageMostras({ slug, content, sessoes }: PageMostrasProps
   return (
     <div className={`mostra mostra--${slug}`}>
       <div className="mostra__sidebar">
-        <SidebarMostra mostra={slug} content={content} />
+        <SidebarMostra mostra={`mostra ${slug}`} content={content} />
       </div>
       <div className="mostra__content">
         <DestaqueSlider sessoes={sessoesFiltradas} nomeMostra={slug} />

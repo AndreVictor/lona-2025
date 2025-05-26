@@ -23,39 +23,24 @@ const slugToNomeMostraMap: Record<string, Mostras> = {
   especial: "especial",
 };
 
-export async function getMostra(nomeMostra: Mostras) {
-  const queryName = queryNameMap[nomeMostra];
-  const slugPagina = slugPaginaMap[nomeMostra];
-
-  const isAcervo = nomeMostra === "acervo";
-
-  const query = `
+const queries = {
+  atravessamentos: `
     query ($slug: ID!) {
-      ${queryName} {
+      atravessamentos {
         nodes {
           title
           content
           slug
-          featuredImage {
-            node {
-              sourceUrl
-            }
-          }
-          ${isAcervo ? "informacoesMostraAcervo" : "informacoesSessao"} {
+          featuredImage { node { sourceUrl } }
+          informacoesSessao {
             dataInicial
             local
             filmes {
-              ... on ${isAcervo ? "Acervo" : "Filme"} {
+              ... on Filme {
                 title
                 slug
-                featuredImage {
-                  node {
-                    sourceUrl
-                  }
-                }
-                ${isAcervo ? "informacoesAcervo" : "informacoesFilmes"} {
-                  fichaTecMini
-                }
+                featuredImage { node { sourceUrl } }
+                informacoesFilmes { fichaTecMini }
               }
             }
           }
@@ -66,7 +51,98 @@ export async function getMostra(nomeMostra: Mostras) {
         content
       }
     }
-  `;
+  `,
+  acervo: `
+    query ($slug: ID!) {
+      mostraacervos {
+        nodes {
+          title
+          content
+          slug
+          featuredImage { node { sourceUrl } }
+          informacoesMostraAcervo {
+            dataInicial
+            local
+            filmes {
+              ... on Acervo {
+                title
+                slug
+                featuredImage { node { sourceUrl } }
+                informacoesAcervo { fichaTecMini }
+              }
+            }
+          }
+        }
+      }
+      page(id: $slug, idType: URI) {
+        title
+        content
+      }
+    }
+  `,
+  homenagem: `
+    query ($slug: ID!) {
+      homenagens {
+        nodes {
+          title
+          content
+          slug
+          featuredImage { node { sourceUrl } }
+          informacoesSessao {
+            dataInicial
+            local
+            filmes {
+              ... on Filme {
+                title
+                slug
+                featuredImage { node { sourceUrl } }
+                informacoesFilmes { fichaTecMini }
+              }
+            }
+          }
+        }
+      }
+      page(id: $slug, idType: URI) {
+        title
+        content
+      }
+    }
+  `,
+  especial: `
+    query ($slug: ID!) {
+      especiais {
+        nodes {
+          title
+          content
+          slug
+          featuredImage { node { sourceUrl } }
+          informacoesSessao {
+            dataInicial
+            local
+            filmes {
+              ... on Filme {
+                title
+                slug
+                featuredImage { node { sourceUrl } }
+                informacoesFilmes { fichaTecMini }
+              }
+            }
+          }
+        }
+      }
+      page(id: $slug, idType: URI) {
+        title
+        content
+      }
+    }
+  `,
+};
+
+export async function getMostra(nomeMostra: Mostras) {
+  const queryName = queryNameMap[nomeMostra] as keyof typeof res.data;
+  const slugPagina = slugPaginaMap[nomeMostra];
+
+  const query = queries[nomeMostra];
 
   const variables = { slug: slugPagina };
 
@@ -85,15 +161,17 @@ export async function getMostra(nomeMostra: Mostras) {
     throw new Error(`Mostra ${nomeMostra} não encontrada`);
   }
 
-  const informacoesKey = isAcervo ? "informacoesMostraAcervo" : "informacoesSessao";
-
-  const nodesNormalizados = nodes.map((node: any) => ({
-    ...node,
-    informacoesSessao: node[informacoesKey],
-  }));
-
   return {
-    nodes: nodesNormalizados,
+    nodes,
     pageContent: page.content,
+    infoKey: nomeMostra === "acervo" ? "informacoesMostraAcervo" : "informacoesSessao",
   };
+}
+
+export function getNomeMostraFromSlug(slug: string): Mostras {
+  const nomeMostra = slugToNomeMostraMap[slug];
+  if (!nomeMostra) {
+    throw new Error(`Slug inválido: ${slug}`);
+  }
+  return nomeMostra;
 }
