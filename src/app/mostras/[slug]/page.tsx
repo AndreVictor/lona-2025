@@ -5,11 +5,13 @@ const slugsValidos = ["atravessamentos", "acervo", "homenagem", "especial"] as c
 type Mostras = (typeof slugsValidos)[number];
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  if (!slugsValidos.includes(params.slug as Mostras)) {
+  const slug = params.slug as Mostras;
+
+  if (!slugsValidos.includes(slug)) {
     return <div>Mostra não encontrada</div>;
   }
 
-  const data = await getMostra(params.slug as Mostras);
+  const data = await getMostra(slug);
 
   if (!data || !data.nodes) {
     return <div>Erro ao carregar os dados da mostra.</div>;
@@ -17,7 +19,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   return (
     <PageMostras
-      slug={params.slug}
+      slug={slug}
       content={data.pageContent}
       sessoes={data.nodes}
     />
@@ -25,10 +27,5 @@ export default async function Page({ params }: { params: { slug: string } }) {
 }
 
 export async function generateStaticParams() {
-  return [
-    { slug: "atravessamentos" },
-    { slug: "acervo" },
-    { slug: "homenagem" },
-    { slug: "especial" },
-  ];
+  return slugsValidos.map(slug => ({ slug }));
 }

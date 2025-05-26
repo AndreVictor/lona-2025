@@ -7,11 +7,12 @@ import ListaFilmes from "@/components/ui/ListaFilmes";
 import ListaSessao from "@/components/ui/ListaSessao";
 import MenuFiltrosMostra from "@/components/ui/MenuFiltrosMostra";
 import SidebarMostra from "@/components/ui/SidebarMostra";
+import { getInfo } from "@/utils/getInfo";
 
 type PageMostrasProps = {
   slug: string;
   content: string;
-  sessoes: any[]; // Podemos tipar melhor depois se quiser
+  sessoes: any[];
 };
 
 export default function PageMostras({ slug, content, sessoes }: PageMostrasProps) {
@@ -23,7 +24,7 @@ export default function PageMostras({ slug, content, sessoes }: PageMostrasProps
     new Set(
       (sessoes || [])
         .map(sessao => {
-          const info = sessao.informacoesSessao || sessao.informacoesMostraAcervo;
+          const info = getInfo(sessao);
           const dataBruta = info?.dataInicial;
           return dataBruta ? formatDate(dataBruta, false) : null;
         })
@@ -35,7 +36,7 @@ export default function PageMostras({ slug, content, sessoes }: PageMostrasProps
     new Set(
       (sessoes || [])
         .map(sessao => {
-          const info = sessao.informacoesSessao || sessao.informacoesMostraAcervo;
+          const info = getInfo(sessao);
           return info?.local;
         })
         .filter(Boolean)
@@ -43,7 +44,7 @@ export default function PageMostras({ slug, content, sessoes }: PageMostrasProps
   );
 
   const sessoesFiltradas = (sessoes || []).filter(sessao => {
-    const info = sessao.informacoesSessao || sessao.informacoesMostraAcervo;
+    const info = getInfo(sessao);
     const data = formatDate(info?.dataInicial, false) ?? "";
     const local = info?.local;
 
@@ -60,7 +61,7 @@ export default function PageMostras({ slug, content, sessoes }: PageMostrasProps
         <SidebarMostra mostra={`mostra ${slug}`} content={content} />
       </div>
       <div className="mostra__content">
-        <DestaqueSlider sessoes={sessoesFiltradas} nomeMostra={slug}/>
+        <DestaqueSlider sessoes={sessoesFiltradas} nomeMostra={slug} />
         <MenuFiltrosMostra
           filtro={filtro}
           setFiltro={setFiltro}
