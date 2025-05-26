@@ -1,14 +1,12 @@
-import PageMostras from "@/components/PageMostras";
+/* import PageMostras from "@/components/PageMostras";
 import { getMostra, getNomeMostraFromSlug } from "@/utils/getMostra";
 
 const slugsValidos = ["atravessamentos", "acervo", "homenagem", "especial"] as const;
 type Mostras = (typeof slugsValidos)[number];
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  let slug: Mostras;
-  try {
-    slug = getNomeMostraFromSlug(params.slug);
-  } catch (error) {
+  const slug = getNomeMostraFromSlug(params.slug);
+  if (!slug) {
     return <div>Mostra não encontrada</div>;
   }
 
@@ -30,4 +28,4 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
 export async function generateStaticParams() {
   return slugsValidos.map(slug => ({ slug }));
-}
+} */

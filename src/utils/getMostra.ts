@@ -139,7 +139,7 @@ const queries = {
 };
 
 export async function getMostra(nomeMostra: Mostras) {
-  const queryName = queryNameMap[nomeMostra] as keyof typeof res.data;
+  const queryName = queryNameMap[nomeMostra];
   const slugPagina = slugPaginaMap[nomeMostra];
 
   const query = queries[nomeMostra];
