@@ -21,9 +21,10 @@ export default function PageMostras({ slug, content, sessoes }: PageMostrasProps
 
   const datasUnicas = Array.from(
     new Set(
-      sessoes
+      (sessoes || [])
         .map(sessao => {
-          const dataBruta = sessao.informacoesSessao?.dataInicial;
+          const info = sessao.informacoesSessao || sessao.informacoesMostraAcervo;
+          const dataBruta = info?.dataInicial;
           return dataBruta ? formatDate(dataBruta, false) : null;
         })
         .filter((item): item is string => Boolean(item))
@@ -32,15 +33,19 @@ export default function PageMostras({ slug, content, sessoes }: PageMostrasProps
 
   const locaisUnicos = Array.from(
     new Set(
-      sessoes
-        .map(sessao => sessao.informacoesSessao?.local)
+      (sessoes || [])
+        .map(sessao => {
+          const info = sessao.informacoesSessao || sessao.informacoesMostraAcervo;
+          return info?.local;
+        })
         .filter(Boolean)
     )
   );
 
-  const sessoesFiltradas = sessoes.filter(sessao => {
-    const data = formatDate(sessao.informacoesSessao?.dataInicial, false) ?? "";
-    const local = sessao.informacoesSessao?.local;
+  const sessoesFiltradas = (sessoes || []).filter(sessao => {
+    const info = sessao.informacoesSessao || sessao.informacoesMostraAcervo;
+    const data = formatDate(info?.dataInicial, false) ?? "";
+    const local = info?.local;
 
     const filtraPorData =
       datasSelecionadas.length === 0 || (data && datasSelecionadas.includes(data));

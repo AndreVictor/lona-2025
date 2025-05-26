@@ -27,6 +27,8 @@ export async function getMostra(nomeMostra: Mostras) {
   const queryName = queryNameMap[nomeMostra];
   const slugPagina = slugPaginaMap[nomeMostra];
 
+  const isAcervo = nomeMostra === "acervo";
+
   const query = `
     query ($slug: ID!) {
       ${queryName} {
@@ -39,11 +41,11 @@ export async function getMostra(nomeMostra: Mostras) {
               sourceUrl
             }
           }
-          informacoesSessao {
+          ${isAcervo ? "informacoesMostraAcervo" : "informacoesSessao"} {
             dataInicial
             local
             filmes {
-              ... on Filme {
+              ... on ${isAcervo ? "Acervo" : "Filme"} {
                 title
                 slug
                 featuredImage {
@@ -51,7 +53,7 @@ export async function getMostra(nomeMostra: Mostras) {
                     sourceUrl
                   }
                 }
-                informacoesFilmes {
+                ${isAcervo ? "informacoesAcervo" : "informacoesFilmes"} {
                   fichaTecMini
                 }
               }
