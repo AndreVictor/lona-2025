@@ -4,13 +4,13 @@ import { getMostra } from "@/utils/getMostra";
 const slugsValidos = ["atravessamentos", "homenagem", "especial"] as const;
 type Mostras = (typeof slugsValidos)[number];
 
-interface Params {
+type Props = {
   params: {
     slug: string;
   };
-}
+};
 
-export default async function MostraPage({ params }: Params) {
+export default async function MostraPage({ params }: Props) {
   const slug = params.slug as Mostras;
 
   if (!slugsValidos.includes(slug)) {
