@@ -4,14 +4,15 @@ import { getMostra, getNomeMostraFromSlug } from "@/utils/getMostra";
 const slugsValidos = ["atravessamentos", "homenagem", "especial"] as const;
 type Mostras = (typeof slugsValidos)[number];
 
-type Props = {
+interface PageProps {
   params: {
     slug: string;
   };
-};
+}
 
-export default async function Page({ params }: Props) {
+export default async function Page({ params }: PageProps) {
   let slug: Mostras;
+
   try {
     slug = getNomeMostraFromSlug(params.slug);
   } catch (error) {
@@ -35,5 +36,5 @@ export default async function Page({ params }: Props) {
 }
 
 export async function generateStaticParams() {
-  return slugsValidos.map(slug => ({ slug }));
+  return slugsValidos.map((slug) => ({ slug }));
 }
