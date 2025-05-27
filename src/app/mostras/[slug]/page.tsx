@@ -4,9 +4,17 @@ import { getMostra, getNomeMostraFromSlug } from "@/utils/getMostra";
 const slugsValidos = ["atravessamentos", "homenagem", "especial"] as const;
 type Mostras = (typeof slugsValidos)[number];
 
-export default async function Page({ params }: { params: { slug: string } }) {
-  const slug = getNomeMostraFromSlug(params.slug);
-  if (!slug) {
+type Props = {
+  params: {
+    slug: string;
+  };
+};
+
+export default async function Page({ params }: Props) {
+  let slug: Mostras;
+  try {
+    slug = getNomeMostraFromSlug(params.slug);
+  } catch (error) {
     return <div>Mostra não encontrada</div>;
   }
 
