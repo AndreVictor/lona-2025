@@ -5,11 +5,11 @@ import { notFound } from "next/navigation";
 const slugsValidos = ["atravessamentos", "homenagem", "especial"] as const;
 type Mostras = (typeof slugsValidos)[number];
 
-type Props = {
+interface Props {
   params: {
     slug: Mostras;
   };
-};
+}
 
 export default async function MostraPage({ params }: Props) {
   const slug = params.slug;
