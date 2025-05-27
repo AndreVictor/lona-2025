@@ -4,13 +4,13 @@ import { getMostra, getNomeMostraFromSlug } from "@/utils/getMostra";
 const slugsValidos = ["atravessamentos", "homenagem", "especial"] as const;
 type Mostras = (typeof slugsValidos)[number];
 
-interface PageProps {
+interface Params {
   params: {
     slug: string;
   };
 }
 
-export default async function Page({ params }: PageProps) {
+export default async function MostraPage({ params }: Params) {
   let slug: Mostras;
 
   try {
