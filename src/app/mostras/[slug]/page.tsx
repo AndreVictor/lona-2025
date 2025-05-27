@@ -1,20 +1,21 @@
 import PageMostras from "@/components/PageMostras";
 import { getMostra } from "@/utils/getMostra";
+import { notFound } from "next/navigation";
 
 const slugsValidos = ["atravessamentos", "homenagem", "especial"] as const;
 type Mostras = (typeof slugsValidos)[number];
 
 type Props = {
   params: {
-    slug: string;
+    slug: Mostras;
   };
 };
 
 export default async function MostraPage({ params }: Props) {
-  const slug = params.slug as Mostras;
+  const slug = params.slug;
 
   if (!slugsValidos.includes(slug)) {
-    return <div>Mostra não encontrada</div>;
+    notFound();
   }
 
   const data = await getMostra(slug);
@@ -33,6 +34,6 @@ export default async function MostraPage({ params }: Props) {
   );
 }
 
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<Array<{ slug: Mostras }>> {
   return slugsValidos.map((slug) => ({ slug }));
 }
