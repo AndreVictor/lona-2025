@@ -83,6 +83,7 @@ export default function Programacao({ programacoes }: ProgramacaoProps) {
   }
 
   const hoje = new Date();
+  hoje.setHours(0, 0, 0, 0);
 
   const programacoesFuturas = programacoes
     .filter((item) => {
@@ -90,18 +91,18 @@ export default function Programacao({ programacoes }: ProgramacaoProps) {
       const [dataPart] = data.split(' ');
       const [dia, mes, ano] = dataPart.split('/');
 
-      const dataItem = new Date(`${ano}-${mes}-${dia}`);
+      const dataItem = new Date(Number(ano), Number(mes) - 1, Number(dia), 0, 0, 0, 0);
 
       return dataItem >= hoje;
     })
     .sort((a, b) => {
       const [dataA] = a.informacoesProgramacao.dataHora.split(' ');
       const [diaA, mesA, anoA] = dataA.split('/');
-      const dateA = new Date(`${anoA}-${mesA}-${diaA}`);
+      const dateA = new Date(Number(anoA), Number(mesA) - 1, Number(diaA));
 
       const [dataB] = b.informacoesProgramacao.dataHora.split(' ');
       const [diaB, mesB, anoB] = dataB.split('/');
-      const dateB = new Date(`${anoB}-${mesB}-${diaB}`);
+      const dateB = new Date(Number(anoB), Number(mesB) - 1, Number(diaB));
 
       return dateA.getTime() - dateB.getTime();
     })

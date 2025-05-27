@@ -1,7 +1,7 @@
-/* import PageMostras from "@/components/PageMostras";
+import PageMostras from "@/components/PageMostras";
 import { getMostra, getNomeMostraFromSlug } from "@/utils/getMostra";
 
-const slugsValidos = ["atravessamentos", "acervo", "homenagem", "especial"] as const;
+const slugsValidos = ["atravessamentos", "homenagem", "especial"] as const;
 type Mostras = (typeof slugsValidos)[number];
 
 export default async function Page({ params }: { params: { slug: string } }) {
@@ -28,8 +28,4 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
 export async function generateStaticParams() {
   return slugsValidos.map(slug => ({ slug }));
-} */
-
-  export default function Page() {
-  return <div>Página temporariamente fora do ar.</div>;
 }

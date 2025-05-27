@@ -12,7 +12,8 @@ export default function ListaSessao({ sessoes, nomeMostra }: ListaSessaoProps) {
   return (
     <section className="listaSessao" id="sessoes">
       {sessoes.map((sessao, index) => {
-        const filmes = sessao.informacoesSessao?.filmes?.map(
+        const info = sessao.informacoesSessao || sessao.informacoesMostraAcervo;
+        const filmes = info?.filmes?.map(
           (filme: any) => filme.title
         );
 
@@ -22,8 +23,8 @@ export default function ListaSessao({ sessoes, nomeMostra }: ListaSessaoProps) {
             imagem={sessao.featuredImage?.node?.sourceUrl || ""}
             sessao={sessao.title}
             filmes={filmes || []}
-            local={sessao.informacoesSessao?.local || ""}
-            data={sessao.informacoesSessao?.dataInicial || ""}
+            local={info?.local || ""}
+            data={info?.dataInicial || ""}
             link={`/mostras/${nomeMostra}/sessao/${sessao.slug}`}
           />
         );

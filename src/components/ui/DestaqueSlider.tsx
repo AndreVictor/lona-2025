@@ -12,25 +12,29 @@ export default function DestaqueSlider({ sessoes, nomeMostra }: DestaqueSliderPr
   const todasSessoes = sessoes.flat();
   const agora = new Date();
   const sessoesFuturas = todasSessoes.filter((sessao: any) => {
-    const data = new Date(sessao.informacoesSessao.dataInicial);
+    const info = sessao.informacoesSessao || sessao.informacoesMostraAcervo;
+    const data = new Date(info?.dataInicial);
     return data >= agora;
   });
   const sessoesOrdenadas = sessoesFuturas.sort((a: any, b: any) => {
-    return new Date(a.informacoesSessao.dataInicial).getTime() - new Date(b.informacoesSessao.dataInicial).getTime();
+    const infoA = a.informacoesSessao || a.informacoesMostraAcervo;
+    const infoB = b.informacoesSessao || b.informacoesMostraAcervo;
+    return new Date(infoA?.dataInicial).getTime() - new Date(infoB?.dataInicial).getTime();
   });
   const proximaSessao = sessoesOrdenadas[0];
+  const info = proximaSessao?.informacoesSessao || proximaSessao?.informacoesMostraAcervo;
 
   const [currentIndex, setCurrentIndex] = React.useState(0);
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? proximaSessao?.informacoesSessao?.filmes.length - 1 : prevIndex - 1
+      prevIndex === 0 ? info?.filmes.length - 1 : prevIndex - 1
     );
   };
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === proximaSessao?.informacoesSessao?.filmes.length - 1 ? 0 : prevIndex + 1
+      prevIndex === info?.filmes.length - 1 ? 0 : prevIndex + 1
     );
   };
 
@@ -50,22 +54,22 @@ export default function DestaqueSlider({ sessoes, nomeMostra }: DestaqueSliderPr
           display: "flex",
           transition: "transform 0.3s ease-in-out"
         }}>
-          {proximaSessao?.informacoesSessao?.filmes.map((filme: any, index: number) => (
+          {info?.filmes.map((filme: any, index: number) => (
             <DestaqueCard
               key={index}
               imagem={filme.featuredImage?.node?.sourceUrl || ""}
               sessao={proximaSessao.title}
               titulo={filme.title}
               direcao={filme.informacoesFilmes?.fichaTecMini || ""}
-              data={new Date(proximaSessao.informacoesSessao.dataInicial).toLocaleDateString("pt-BR")}
-              local={proximaSessao.informacoesSessao.local}
+              data={new Date(info.dataInicial).toLocaleDateString("pt-BR")}
+              local={info.local}
               link={`/mostras/${nomeMostra}/sessao/${proximaSessao.slug}`}
             />
           ))}
         </div>
         <div className="destaqueSlider__control">
           <div className="destaqueSlider__bullet-box">
-            {proximaSessao?.informacoesSessao?.filmes.map((_: any, index: number) => (
+            {info?.filmes.map((_: any, index: number) => (
               <span
                 key={index}
                 className={`destaqueSlider__control-bullet ${index === currentIndex ? 'active' : ''}`}

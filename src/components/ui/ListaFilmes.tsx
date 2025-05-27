@@ -9,19 +9,18 @@ type ListaFilmesProps = {
 };
 
 export default function ListaFilmes({ sessoes, nomeMostra }: ListaFilmesProps) {
-  const filmes = sessoes.flatMap(sessao =>
-    sessao.informacoesSessao?.filmes?.map((filme: any) => ({
+  const filmes = sessoes.flatMap(sessao => {
+    const info = sessao.informacoesSessao || sessao.informacoesMostraAcervo;
+    return info?.filmes?.map((filme: any) => ({
       imagem: filme.featuredImage?.node?.sourceUrl || "/placeholder.png",
       titulo: filme.title,
       direcao: filme.informacoesFilmes?.fichaTecMini || "",
       sessao: sessao.title,
-      data: sessao.informacoesSessao?.dataInicial
-        ? formatDate(sessao.informacoesSessao.dataInicial, true)
-        : "",
-      local: sessao.informacoesSessao?.local || "",
+      data: info?.dataInicial ? formatDate(info.dataInicial, true) : "",
+      local: info?.local || "",
       link: `/mostras/${nomeMostra}/sessao/${sessao.slug}`
     })) || []
-  );
+  });
 
   return (
     <section className="listaFilmes" id="filmes">

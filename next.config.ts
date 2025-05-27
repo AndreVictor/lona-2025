@@ -1,8 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  //output: "export",
-
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -18,6 +16,16 @@ const nextConfig: NextConfig = {
       ],
     },
   ],
+
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "wp.mostra-lona.com.br",
+        pathname: "/**",
+      },
+    ],
+  },
 };
 
 export default nextConfig;
