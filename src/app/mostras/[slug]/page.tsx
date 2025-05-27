@@ -10,7 +10,7 @@ interface Props {
     slug: Mostras;
   };
 }
-
+// teste
 export default async function MostraPage({ params }: Props) {
   const slug = params.slug;
 
