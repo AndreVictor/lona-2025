@@ -1,5 +1,5 @@
 import PageMostras from "@/components/PageMostras";
-import { getMostra, getNomeMostraFromSlug } from "@/utils/getMostra";
+import { getMostra } from "@/utils/getMostra";
 
 const slugsValidos = ["atravessamentos", "homenagem", "especial"] as const;
 type Mostras = (typeof slugsValidos)[number];
@@ -11,11 +11,9 @@ interface Params {
 }
 
 export default async function MostraPage({ params }: Params) {
-  let slug: Mostras;
+  const slug = params.slug as Mostras;
 
-  try {
-    slug = getNomeMostraFromSlug(params.slug);
-  } catch (error) {
+  if (!slugsValidos.includes(slug)) {
     return <div>Mostra não encontrada</div>;
   }
 

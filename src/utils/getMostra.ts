@@ -14,11 +14,11 @@ const slugPaginaMap: Record<Mostras, string> = {
   especial: "mostra-especial",
 };
 
-const slugToNomeMostraMap: Record<string, Mostras> = {
+const slugToNomeMostraMap = {
   atravessamentos: "atravessamentos",
   homenagem: "homenagem",
   especial: "especial",
-};
+} as const;
 
 const queries = {
   atravessamentos: `
@@ -137,7 +137,7 @@ export async function getMostra(nomeMostra: Mostras) {
   };
 }
 
-export function getNomeMostraFromSlug(slug: string): Mostras {
+export function getNomeMostraFromSlug(slug: keyof typeof slugToNomeMostraMap): Mostras {
   const nomeMostra = slugToNomeMostraMap[slug];
   if (!nomeMostra) {
     throw new Error(`Slug inválido: ${slug}`);
