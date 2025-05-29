@@ -5,16 +5,18 @@ import { notFound } from "next/navigation";
 const slugsValidos = ["atravessamentos", "homenagem", "especial"] as const;
 type Mostras = (typeof slugsValidos)[number];
 
-interface Props {
-  params: {
-    slug: Mostras;
-  };
+function isMostras(slug: string): slug is Mostras {
+  return slugsValidos.includes(slug as Mostras);
 }
-// teste
-export default async function MostraPage({ params }: Props) {
-  const slug = params.slug;
 
-  if (!slugsValidos.includes(slug)) {
+export default async function MostraPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const { slug } = params;
+
+  if (!isMostras(slug)) {
     notFound();
   }
 

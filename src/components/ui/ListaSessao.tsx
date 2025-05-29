@@ -20,7 +20,7 @@ export default function ListaSessao({ sessoes, nomeMostra }: ListaSessaoProps) {
         return (
           <CardSessao
             key={index}
-            imagem={sessao.featuredImage?.node?.sourceUrl || ""}
+            imagem={sessao.featuredImage?.node?.sourceUrl || "/img/grafismo.png"}
             sessao={sessao.title}
             filmes={filmes || []}
             local={info?.local || ""}

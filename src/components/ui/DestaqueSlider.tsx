@@ -42,6 +42,8 @@ export default function DestaqueSlider({ sessoes, nomeMostra }: DestaqueSliderPr
     setCurrentIndex(index);
   };
 
+  if (!info?.filmes?.length) return null;
+
   return (
     <section className="destaqueSlider" id="destaque">
       <HeaderSessao
@@ -57,7 +59,7 @@ export default function DestaqueSlider({ sessoes, nomeMostra }: DestaqueSliderPr
           {info?.filmes.map((filme: any, index: number) => (
             <DestaqueCard
               key={index}
-              imagem={filme.featuredImage?.node?.sourceUrl || ""}
+              imagem={filme.featuredImage?.node?.sourceUrl || "/img/grafismo.png"}
               sessao={proximaSessao.title}
               titulo={filme.title}
               direcao={filme.informacoesFilmes?.fichaTecMini || ""}

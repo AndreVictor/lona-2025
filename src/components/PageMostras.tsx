@@ -75,9 +75,13 @@ export default function PageMostras(props: PageMostrasProps) {
           setLocaisSelecionados={setLocaisSelecionados}
         />
         {filtro === "filmes" ? (
-          <ListaFilmes sessoes={sessoesFiltradas} nomeMostra={slug} />
+          sessoesFiltradas.length > 0 ? (
+            <ListaFilmes sessoes={sessoesFiltradas} nomeMostra={slug} />
+          ) : null
         ) : (
-          <ListaSessao sessoes={sessoesFiltradas} nomeMostra={slug} />
+          sessoesFiltradas.length > 0 ? (
+            <ListaSessao sessoes={sessoesFiltradas} nomeMostra={slug} />
+          ) : null
         )}
       </div>
     </div>

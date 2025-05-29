@@ -12,7 +12,7 @@ export default function ListaFilmes({ sessoes, nomeMostra }: ListaFilmesProps) {
   const filmes = sessoes.flatMap(sessao => {
     const info = sessao.informacoesSessao || sessao.informacoesMostraAcervo;
     return info?.filmes?.map((filme: any) => ({
-      imagem: filme.featuredImage?.node?.sourceUrl || "/placeholder.png",
+      imagem: filme.featuredImage?.node?.sourceUrl || "/img/grafismo.png",
       titulo: filme.title,
       direcao: filme.informacoesFilmes?.fichaTecMini || "",
       sessao: sessao.title,
