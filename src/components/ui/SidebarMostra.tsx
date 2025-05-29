@@ -27,7 +27,7 @@ export default function SidebarMostra({ mostra, content }: SidebarMostraProps) {
       <nav className="sidebarMostra__nav">
         <ul>
           <li><a className="biz" href="#destaque">→ Próxima exibição</a></li>
-          <li><a className="biz" href="#sessões">→ Sessões</a></li>
+          <li><a className="biz" href="#sessoes">→ Sessões</a></li>
           <li><a className="biz" href="#filmes">→ Filmes</a></li>
           <li><a className="biz" href="#anteriores">→ Edições anteriores</a></li>
         </ul>

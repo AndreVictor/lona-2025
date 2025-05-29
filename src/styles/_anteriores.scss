@@ -1,0 +1,22 @@
+.cardAnterior {
+    display: flex;
+    border-bottom: 1px solid $vermelho;
+
+    &__img {
+        width: 28rem;
+        height: 16rem;
+        object-fit: cover;
+    }
+
+    &__content {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    &__title {
+        font-size: 2.8rem;
+        line-height: 3.2rem;
+    }
+}

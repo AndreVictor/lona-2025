@@ -29,6 +29,7 @@ export default function MostraPage({ params }: { params: Promise<{ slug: string 
       content={data.pageContent}
       sessoes={data.nodes}
       infoKey={data.infoKey}
+      anteriores={data.anteriores}
     />
   );
 }

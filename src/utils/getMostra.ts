@@ -47,6 +47,15 @@ const queries = {
         title
         content
       }
+        anteriores(first: 1000) {
+      nodes {
+        title
+        informacoesFilmes {
+          fichaTecMini
+          mostra
+        }
+      }
+    }
     }
   `,
   homenagem: `
@@ -75,6 +84,15 @@ const queries = {
         title
         content
       }
+        anteriores(first: 1000) {
+      nodes {
+        title
+        informacoesFilmes {
+          fichaTecMini
+          mostra
+        }
+      }
+    }
     }
   `,
   especial: `
@@ -103,6 +121,15 @@ const queries = {
         title
         content
       }
+        anteriores(first: 1000) {
+      nodes {
+        title
+        informacoesFilmes {
+          fichaTecMini
+          mostra
+        }
+      }
+    }
     }
   `,
 };
@@ -124,16 +151,19 @@ export async function getMostra(nomeMostra: Mostras) {
 
   const nodes = res.data?.[queryName]?.nodes;
   const page = res.data?.page;
+  const anteriores = res.data?.anteriores?.nodes || [];
 
   if (!nodes || !page) {
     console.error("Dados não encontrados para a Mostra:", nomeMostra);
     throw new Error(`Mostra ${nomeMostra} não encontrada`);
   }
 
+  
   return {
     nodes,
     pageContent: page.content,
     infoKey: "informacoesSessao",
+    anteriores,
   };
 }
 

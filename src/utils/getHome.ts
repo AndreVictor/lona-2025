@@ -166,7 +166,6 @@ export async function getHome() {
     throw new Error("Erro ao buscar dados da Home");
   }
 
-  console.log(result.data)
   return {
     contentALona: result.data.aLona,
     contentMostras: {

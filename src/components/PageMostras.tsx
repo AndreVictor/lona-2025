@@ -7,16 +7,18 @@ import ListaFilmes from "@/components/ui/ListaFilmes";
 import ListaSessao from "@/components/ui/ListaSessao";
 import MenuFiltrosMostra from "@/components/ui/MenuFiltrosMostra";
 import SidebarMostra from "@/components/ui/SidebarMostra";
+import ListaAnteriores from "./ui/ListaAnteriores";
 
 type PageMostrasProps = {
   slug: string;
   content: string;
   sessoes: any[];
   infoKey: string;
+  anteriores: any[];
 };
 
 export default function PageMostras(props: PageMostrasProps) {
-  const { slug, content, sessoes, infoKey } = props;
+  const { slug, content, sessoes, infoKey, anteriores } = props;
   const [filtro, setFiltro] = useState("sessoes");
   const [datasSelecionadas, setDatasSelecionadas] = useState<string[]>([]);
   const [locaisSelecionados, setLocaisSelecionados] = useState<string[]>([]);
@@ -83,6 +85,11 @@ export default function PageMostras(props: PageMostrasProps) {
             <ListaSessao sessoes={sessoesFiltradas} nomeMostra={slug} />
           ) : null
         )}
+      {Array.isArray(anteriores) && anteriores.length > 0 ? (
+        <ListaAnteriores anteriores={anteriores} slug={slug} />
+      ) : (
+        <p>Nenhuma edição anterior encontrada.</p>
+      )}
       </div>
     </div>
   );
