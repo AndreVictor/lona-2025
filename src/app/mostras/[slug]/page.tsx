@@ -1,6 +1,7 @@
 import PageMostras from "@/components/PageMostras";
 import { getMostra } from "@/utils/getMostra";
 import { notFound } from "next/navigation";
+import { use } from "react";
 
 const slugsValidos = ["atravessamentos", "homenagem", "especial"] as const;
 type Mostras = (typeof slugsValidos)[number];
@@ -9,18 +10,14 @@ function isMostras(slug: string): slug is Mostras {
   return slugsValidos.includes(slug as Mostras);
 }
 
-export default async function MostraPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const { slug } = params;
+export default function MostraPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = use(params);
 
   if (!isMostras(slug)) {
     notFound();
   }
 
-  const data = await getMostra(slug);
+  const data = use(getMostra(slug));
 
   if (!data || !data.nodes) {
     return <div>Erro ao carregar os dados da mostra.</div>;
