@@ -5,6 +5,11 @@ import CardAnteriores from './CardAnteriores';
 type Props = {
   anteriores: {
     title: string;
+    featuredImage?: {
+      node: {
+        sourceUrl: string;
+      };
+    };
     informacoesFilmes?: {
       fichaTecMini?: string;
       mostra?: string;
@@ -30,8 +35,8 @@ export default function ListaAnteriores({ anteriores, slug }: Props) {
             <CardAnteriores
               key={index}
               titulo={item.title}
-              mostra={item.informacoesFilmes?.mostra}
               fichaTecMini={item.informacoesFilmes?.fichaTecMini}
+              imagem={item.featuredImage?.node?.sourceUrl}
             />
           ))}
       </div>

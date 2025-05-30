@@ -1,0 +1,57 @@
+.filmesAcervo {
+
+    &__card-box {
+        @include grid(repeat(2, 1fr), 0rem);
+    }
+}
+
+.cardFilme {
+    &__acervo-direcao {
+        font-size: 1.4rem;
+        margin-bottom: 2rem;
+    }
+
+    &__acervo-territorio {
+        font-size: 2rem;
+    }
+}
+
+.menuFiltrosMostra {
+    &--territorio {
+        width: 100%;
+        z-index: 2;
+        top: 8rem;
+    }
+
+    &__dropdown-territorio {
+        width: 100% !important;
+    }
+
+    &__menu-territorio {
+        width: 100%;
+        max-height: 30rem;
+
+        overflow-y: auto;
+
+        scrollbar-width: thin;
+        scrollbar-color: $vermelho transparent;
+        padding-bottom: 8rem;
+        border-right: 1px solid $vermelho;
+
+        &::-webkit-scrollbar {
+        width: 0.4rem;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: transparent;
+            border: none; // Remove bordas se houver
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: $vermelho;
+            border-radius: 0;
+            border: 1px solid $vermelho;
+        }
+
+    }
+}

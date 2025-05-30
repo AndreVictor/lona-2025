@@ -1,6 +1,9 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import HeaderSessao from "./HeaderSessao";
+import MenuFiltroAcervo from "./MenuFiltroAcervo";
+import CardFilmeAcervo from "./CardFilmeAcervo";
 
 interface Filme {
   title: string;
@@ -12,33 +15,39 @@ interface Filme {
   };
   informacoesAcervo: {
     fichaTecMini: string;
+    territorio?: {
+      title: string;
+    }[];
   };
 }
 
 export default function ListaFilmesAcervo({ filmes }: { filmes: Filme[] }) {
   if (!filmes || filmes.length === 0) return null;
 
+  const [territoriosSelecionados, setTerritoriosSelecionados] = React.useState<string[]>([]);
+
+  const filmesFiltrados = filmes.filter((filme) => {
+    const territoriosDoFilme = filme.informacoesAcervo.territorio?.map((t) => t.title) || [];
+    return (
+      territoriosSelecionados.length === 0 ||
+      territoriosDoFilme.some((territorio) => territoriosSelecionados.includes(territorio))
+    );
+  });
+
   return (
-    <section className="lista-filmes-acervo">
-      <h2>Filmes do Acervo</h2>
-      <div className="grid">
-        {filmes.map((filme) => (
-          <Link key={filme.slug} href={`/filmes/${filme.slug}`} className="card">
-            <div className="thumb">
-              {filme.featuredImage?.node?.sourceUrl && (
-                <Image
-                  src={filme.featuredImage.node.sourceUrl}
-                  alt={filme.title}
-                  width={400}
-                  height={300}
-                />
-              )}
-            </div>
-            <div className="infos">
-              <h3>{filme.title}</h3>
-              <p>{filme.informacoesAcervo?.fichaTecMini}</p>
-            </div>
-          </Link>
+    <section className="filmesAcervo" id="filmesAcervo">
+      <HeaderSessao
+        nome="Filmes Acervo"
+        font="biz"
+      />
+      <MenuFiltroAcervo
+        territorios={[...new Set(filmes.flatMap(filme => filme.informacoesAcervo.territorio?.map(t => t.title) || []))]}
+        territoriosSelecionados={territoriosSelecionados}
+        setTerritoriosSelecionados={setTerritoriosSelecionados}
+      />
+      <div className="filmesAcervo__card-box">
+        {filmesFiltrados.map((filme) => (
+          <CardFilmeAcervo key={filme.slug} filme={filme} />
         ))}
       </div>
     </section>

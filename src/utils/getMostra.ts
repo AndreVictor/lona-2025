@@ -50,6 +50,7 @@ const queries = {
         anteriores(first: 1000) {
       nodes {
         title
+        featuredImage { node { sourceUrl } }
         informacoesFilmes {
           fichaTecMini
           mostra
@@ -87,6 +88,7 @@ const queries = {
         anteriores(first: 1000) {
       nodes {
         title
+        featuredImage { node { sourceUrl } }
         informacoesFilmes {
           fichaTecMini
           mostra
@@ -124,6 +126,7 @@ const queries = {
         anteriores(first: 1000) {
       nodes {
         title
+        featuredImage { node { sourceUrl } }
         informacoesFilmes {
           fichaTecMini
           mostra

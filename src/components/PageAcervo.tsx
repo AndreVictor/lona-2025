@@ -88,8 +88,7 @@ export default function PageAcervo({
           <ListaSessao sessoes={sessoesFiltradas} nomeMostra={slug} />
         )}
 
-        <h2 className="mostra__subtitle">Acervo de Filmes</h2>
-        <ListaFilmesAcervo filmes={acervos} />
+          <ListaFilmesAcervo filmes={acervos} />
 
         <h2 className="mostra__subtitle">Territórios</h2>
         <ListaTerritoriosAcervo territorios={territorios} />

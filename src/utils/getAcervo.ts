@@ -33,7 +33,7 @@ export async function getAcervo() {
           }
         }
       }
-      acervos {
+      acervos(first: 1000, where: { orderby: { field: TITLE, order: ASC } }) {
         nodes {
           title
           content
@@ -45,6 +45,11 @@ export async function getAcervo() {
           }
           informacoesAcervo {
             fichaTecMini
+            territorio {
+              ... on Territorio {
+                title
+              }
+            }
           }
         }
       }
