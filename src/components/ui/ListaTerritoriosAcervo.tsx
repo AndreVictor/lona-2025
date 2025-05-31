@@ -1,8 +1,11 @@
 import React from "react";
 import Image from "next/image";
+import CardTerritorial from "./CardTerritorial";
+import HeaderSessao from "./HeaderSessao";
 
 interface Territorio {
   title: string;
+  slug: string;
   content: string;
   featuredImage: {
     node: {
@@ -11,6 +14,7 @@ interface Territorio {
   };
   informacoesTerritorio: {
     localizacao: string;
+    ano: string;
   };
 }
 
@@ -22,33 +26,14 @@ export default function ListaTerritoriosAcervo({
   if (!territorios || territorios.length === 0) return null;
 
   return (
-    <section className="lista-territorios-acervo">
-      <h2>Territórios</h2>
-      <div className="grid">
+    <section className="listaTerritorio" id="territorios">
+      <HeaderSessao
+        nome="Territórios"
+        font="biz"
+      />
+      <div className="listaTerritorio__card-box">
         {territorios.map((territorio) => (
-          <div key={territorio.title} className="card">
-            <div className="thumb">
-              {territorio.featuredImage?.node?.sourceUrl && (
-                <Image
-                  src={territorio.featuredImage.node.sourceUrl}
-                  alt={territorio.title}
-                  width={400}
-                  height={300}
-                />
-              )}
-            </div>
-            <div className="infos">
-              <h3>{territorio.title}</h3>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: territorio.content,
-                }}
-              />
-              <p className="localizacao">
-                {territorio.informacoesTerritorio?.localizacao}
-              </p>
-            </div>
-          </div>
+          <CardTerritorial key={territorio.title} territorio={territorio} link={`/territorios/${territorio.slug}`} />
         ))}
       </div>
     </section>

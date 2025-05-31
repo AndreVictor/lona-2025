@@ -1,0 +1,30 @@
+.cardFilmeSessao {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    @include respond(tab-port) {
+        grid-template-columns: 1fr;
+    }
+
+    &__fichatec-mini, &__col2 {
+        padding: 2rem;
+    }
+    
+    &__img {
+        width: 100%;
+        height: 24rem;
+        object-fit: cover;
+    }
+
+    &__title {
+        font-size: 2.8rem;
+        line-height: 3.2rem;
+    }
+
+    &__fichatec {
+        font-size: 2rem;
+        line-height: 2.8rem;
+        margin: 2rem 0;
+    }
+
+}

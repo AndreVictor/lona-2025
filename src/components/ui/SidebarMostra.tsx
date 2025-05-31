@@ -29,7 +29,14 @@ export default function SidebarMostra({ mostra, content }: SidebarMostraProps) {
           <li><a className="biz" href="#destaque">→ Próxima exibição</a></li>
           <li><a className="biz" href="#sessoes">→ Sessões</a></li>
           <li><a className="biz" href="#filmes">→ Filmes</a></li>
-          <li><a className="biz" href="#anteriores">→ Edições anteriores</a></li>
+          {mostra === 'Mostra Acervo' ? (
+            <>
+            <li><a className="biz" href="#filmesAcervo">→ Acervo</a></li>
+            <li><a className="biz" href="#territorios">→ Territorios</a></li>
+            </>
+          ) : 
+            (<li><a className="biz" href="#anteriores">→ Edições anteriores</a></li>)
+          }
         </ul>
       </nav>
     </aside>

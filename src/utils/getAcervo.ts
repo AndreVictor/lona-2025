@@ -65,6 +65,7 @@ export async function getAcervo() {
           }
           informacoesTerritorio {
             localizacao
+            ano
           }
         }
       }

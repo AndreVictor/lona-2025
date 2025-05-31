@@ -89,9 +89,7 @@ export default function PageAcervo({
         )}
 
           <ListaFilmesAcervo filmes={acervos} />
-
-        <h2 className="mostra__subtitle">Territórios</h2>
-        <ListaTerritoriosAcervo territorios={territorios} />
+          <ListaTerritoriosAcervo territorios={territorios} />
       </div>
     </div>
   );

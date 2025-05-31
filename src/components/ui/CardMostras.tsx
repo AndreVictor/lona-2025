@@ -15,7 +15,7 @@ export default function CardMostra({
   slug,
 }: CardMostraProps) {
   return (
-    <Link href={`mostras/${slug}`} className={`cardMostra ${mostra.toLowerCase().replace(/\s+/g, '-')}`}>
+    <Link href={slug === 'acervo' ? `${slug}` : `mostras/${slug}`} className={`cardMostra ${mostra.toLowerCase().replace(/\s+/g, '-')}`}>
       <div className="cardMostra__hover">
                 <Grafismo />
             </div>
