@@ -16,6 +16,7 @@ type SessaoProps = {
     informacoesSessao: {
       embed?: string;
       dataInicial?: string;
+      dataFinal?: string;
       local?: string;
       filmes?: Array<{
         title: string;
@@ -45,8 +46,9 @@ export default function PageSessao({ sessao, mostra }: SessaoProps) {
       />
       <div className="pageSessao__content">
         <EmbedFilme
-          embedUrl={sessao.informacoesSessao?.embed ?? ""}
+          embedHtml={sessao.informacoesSessao?.embed ?? ""}
           fallbackImage={sessao.featuredImage?.node.sourceUrl ?? ""}
+          dataFinal={sessao.informacoesSessao?.dataFinal}
         />
         <FilmesSessao filmes={sessao.informacoesSessao?.filmes ?? []} />
       </div>

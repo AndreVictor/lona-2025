@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { formatDate } from "@/utils/formatDate";
 
 type SideBarSessaoProps = {
   titulo: string;
@@ -20,7 +21,7 @@ export default function SidebarSessao({ titulo, mostra, data, local, descricaoHt
       </h1>
       <div className="sidebarSessao__info biz">
         <p className="sidebarSessao__data">
-          {data}
+          {formatDate(data)}
         </p>
         <p className="sidebarSessao__local">
           {local}

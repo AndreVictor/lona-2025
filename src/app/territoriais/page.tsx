@@ -1,7 +1,13 @@
+import PageTerritoriais from '@/components/PageTerritoriais'
+import ListaTerritoriais from '@/components/ui/ListaTerritoriais'
+import SidebarTerritoriais from '@/components/ui/SidebarTerritoriais'
 import React from 'react'
+import { getTerritoriais } from '@/utils/getTerritoriais';
 
-export default function page() {
+export default async function page() {
+  const { territoriais, page } = await getTerritoriais();
+
   return (
-    <div>page</div>
+    <PageTerritoriais territoriais={territoriais.nodes} content={page.content} />
   )
 }

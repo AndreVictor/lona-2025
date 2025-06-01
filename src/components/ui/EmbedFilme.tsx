@@ -1,16 +1,14 @@
 import React from 'react'
 
-export default function EmbedFilme({ embedUrl, fallbackImage }: { embedUrl: string, fallbackImage: string }) {
+export default function EmbedFilme({ embedHtml, fallbackImage, dataFinal }: { embedHtml: string, fallbackImage: string, dataFinal?: string }) {
+  const hoje = new Date()
+  const dataFinalObj = dataFinal ? new Date(dataFinal) : null
+  const podeExibirEmbed = embedHtml && (!dataFinalObj || hoje <= dataFinalObj)
+
   return (
     <div className="pageSessao__embed-box">
-      {embedUrl ? (
-        <iframe
-          width="560"
-          height="315"
-          src={embedUrl}
-          title="YouTube video player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        ></iframe>
+      {podeExibirEmbed ? (
+        <div dangerouslySetInnerHTML={{ __html: embedHtml }} />
       ) : (
         <img src={fallbackImage} alt="Imagem da sessão" />
       )}

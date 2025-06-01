@@ -1,0 +1,152 @@
+.territoriais {
+    display: grid;
+    grid-template-columns: 6fr 8fr;
+    min-height: 100vh;
+
+    @include respond(tab-port) {
+        grid-template-columns: 1fr;
+    }
+
+    &__sidebar-nav ul li a{
+        font-size: 2rem;
+        font-weight: 900;
+        
+        &:hover {
+            letter-spacing: .1rem;
+        }
+    }
+
+    &__sidebar-descricao a{
+        color: $preto !important;
+
+        &:hover {
+            color: $vermelho;
+        }
+    }
+
+    &__info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        padding: 2rem;
+
+        @include respond(tab-port) {
+            grid-template-columns: 1fr;
+        } 
+    }
+
+    &__info-data h5{
+        font-size: 1.6rem;
+    }
+
+    &__filmes h3{
+        padding: 1rem 2rem;
+        border-top: 1px solid $vermelho;
+        border-bottom: 1px solid $vermelho;
+    }
+
+    &__filme {
+        display: flex;
+        align-items: center;
+        
+        border-top: 1px solid $vermelho;
+        border-bottom: 1px solid $vermelho;
+
+        img {
+            width: 28rem;
+            height: 16rem;
+            object-fit: cover;
+        }
+
+        h4 {
+            font-size: 3.6rem;
+            line-height: 4.2rem;
+        }
+    }
+
+    &__parcerias {
+        h5 {
+            font-size: 2rem;
+            padding: 1rem 2rem;
+            border-top: 1px solid $vermelho;
+            border-bottom: 1px solid $vermelho;
+        }
+    }
+
+    &__parcerias-box{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        @include respond(tab-port) {
+            grid-template-columns: 1fr;
+        } 
+    }
+
+    &__parcerias-img {
+        width: 100%;
+        height: 30rem;
+        object-fit: contain;
+        border: 1px solid $vermelho;
+    }
+}
+
+.territoriais__card-galeria-slider {
+  position: relative;
+  overflow: hidden;
+}
+
+.territoriais__card-galeria-inner {
+  width: 100%;
+}
+
+.territoriais__card-galeria-img {
+    width: 100%;
+    height: 60rem;
+  object-fit: cover;
+}
+
+.territoriais__card-galeria-control {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+}
+
+.territoriais__card-galeria-bullets {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.territoriais__card-galeria-bullet {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+
+  &.active {
+    background-color: $preto;
+  }
+}
+
+.territoriais__card-galeria-arrows {
+  display: flex;
+
+  .territoriais__card-galeria-arrow {
+    background-color: $vermelho;
+    border: none;
+    width: 4rem;
+    height: 4rem;
+    font-size: 2rem;
+    color: $preto;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    &.esquerda {
+      transform: rotate(180deg);
+    }
+    &:hover {
+            background-color: $preto;
+            color: $vermelho;
+        }
+  }
+}

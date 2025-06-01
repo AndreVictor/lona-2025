@@ -2,7 +2,7 @@ import { urqlClient } from "./urlClient";
 
 const TERRITORIAIS_QUERY = `
   query {
-    territoriais {
+    territoriais (first: 1000) {
       nodes {
         title
         content
@@ -46,7 +46,7 @@ const TERRITORIAIS_QUERY = `
         }
       }
     }
-    page(id: "sessao-territorial", idType: URI) {
+    page(id: "sessoes-territoriais", idType: URI) {
       content
     }
   }
