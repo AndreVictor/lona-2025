@@ -18,7 +18,7 @@ export default function PageFormacao({ titulo, descricao, anchorLinks }: PageFor
         anchorLinks={anchorLinks}
       />
       <div className="formacao__content">
-        <ListaFormacao />
+        {/* <ListaFormacao /> */}
       </div>
     </div>
   );
