@@ -1,16 +1,10 @@
+import { use } from "react";
 import PageSessao from '@/components/PageSessao';
 import { getSessao } from '@/utils/getSessao';
 import type { Mostras } from '@/utils/getSessao'; // 👈 Importa o tipo corretamente
 
-type Props = {
-  params: {
-    slug: string;
-    sessaoSlug: string;
-  };
-};
-
-export default async function SessaoPage({ params }: Props) {
-  const { slug, sessaoSlug } = params;
+export default async function SessaoPage({ params }: { params: Promise<{ slug: string; sessaoSlug: string }> }) {
+  const { slug, sessaoSlug } = await params;
   const sessaoData = await getSessao(sessaoSlug, slug as Mostras);
 
   if (!sessaoData) {
