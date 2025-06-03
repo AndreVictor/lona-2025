@@ -10,7 +10,7 @@ export default function EmbedFilme({ embedHtml, fallbackImage, dataFinal }: { em
       {podeExibirEmbed ? (
         <div dangerouslySetInnerHTML={{ __html: embedHtml }} />
       ) : (
-        <img src={fallbackImage} alt="Imagem da sessão" />
+        <img src={fallbackImage} alt="Imagem da sessão" className='pageSessao__embed-img' />
       )}
     </div>
   )

@@ -4,6 +4,7 @@ import grafismo from '@/assets/grafismo.png'
 type FilmeProps = {
   title: string;
   slug: string;
+  content: string;
   featuredImage?: {
     node: {
       sourceUrl: string;
@@ -11,6 +12,7 @@ type FilmeProps = {
   };
   informacoesFilmes: {
     fichaTecMini: string;
+    fichaTecCompleta: string;
   };
   descricao?: string;
 };
@@ -24,8 +26,7 @@ export default function CardFilmeSessao({ filme }: { filme: FilmeProps }) {
         <img src={imagem} alt="" className="cardFilmeSessao__img" />
         <div className="cardFilmeSessao__fichatec-mini">
           FICHA TÉCNICA
-          <br />
-          {filme.informacoesFilmes.fichaTecMini}
+          <div dangerouslySetInnerHTML={{__html:filme.informacoesFilmes.fichaTecCompleta}}></div>
         </div>
       </div>
       <div className="cardFilmeSessao__col2">
@@ -35,9 +36,11 @@ export default function CardFilmeSessao({ filme }: { filme: FilmeProps }) {
         <div className="cardFilmeSessao__fichatec biz">
           {filme.informacoesFilmes.fichaTecMini}
         </div>
-        {filme.descricao && (
-          <div className="cardFilmeSessao__text">
-            {filme.descricao}
+        {filme.content && (
+          <div 
+            className="cardFilmeSessao__text"
+            dangerouslySetInnerHTML={{__html:filme.content}}
+          >
           </div>
         )}
       </div>
