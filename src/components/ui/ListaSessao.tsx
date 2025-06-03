@@ -25,7 +25,7 @@ export default function ListaSessao({ sessoes, nomeMostra }: ListaSessaoProps) {
             filmes={filmes || []}
             local={info?.local || ""}
             data={info?.dataInicial || ""}
-            link={`/mostras/${nomeMostra}/sessao/${sessao.slug}`}
+            link={`${nomeMostra === "acervo" ? `/acervo` : `/mostras/${nomeMostra}`}/sessao/${sessao.slug}`}
           />
         );
       })}

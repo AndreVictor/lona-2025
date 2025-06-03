@@ -1,6 +1,6 @@
 import { urqlClient } from './urlClient';
 
-export type Mostras = "atravessamentos" | "homenagem" | "especial";
+export type Mostras = "atravessamentos" | "homenagem" | "especial" | "acervo";
 
 const queries: Record<Mostras, string> = {
   atravessamentos: `
@@ -132,10 +132,53 @@ const queries: Record<Mostras, string> = {
       }
     }
   `,
+  acervo: `
+    query ($slug: ID!) {
+      mostraacervo(id: $slug, idType: SLUG) {
+        title
+        content
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+        informacoesMostraAcervo {
+          embed
+          dataInicial
+          dataFinal
+          local
+          filmes {
+            ... on Acervo {
+              title
+              content
+              featuredImage {node {sourceUrl}}
+              informacoesAcervo {
+                fichaTecMini
+                fichaTecCompleta
+              }
+            }
+          }
+          conversasRelacionadas {
+            ... on Conversa {
+              title
+              content
+              featuredImage {node {sourceUrl}}
+              informacoesConversas {
+                data
+                embed
+                participantes
+                local
+              }
+            }
+          }
+        }
+      }
+    }
+  `,
 };
 
 export async function getSessao(slug: string, nomeMostra: string) {
-  if (!['atravessamentos', 'homenagem', 'especial'].includes(nomeMostra)) {
+  if (!['atravessamentos', 'homenagem', 'especial', 'acervo'].includes(nomeMostra)) {
     console.error('Mostra inválida:', nomeMostra);
     return null;
   }
@@ -144,13 +187,15 @@ export async function getSessao(slug: string, nomeMostra: string) {
   const query = queries[mostraKey];
   const res = await urqlClient.query(query, { slug }).toPromise();
 
-  const dataKey = mostraKey.slice(0, -1); // transforma "atravessamentos" em "atravessamento", etc.
+  const dataKey = mostraKey === 'acervo' ? 'mostraacervo' : mostraKey.toLowerCase();
   const data = res.data?.[dataKey];
 
   if (res.error || !data) {
     console.error('Erro ao buscar dados da sessão:', res.error);
+    
     return null;
   }
 
+  console.log('Dados recebidos da query:', data);
   return data;
 }

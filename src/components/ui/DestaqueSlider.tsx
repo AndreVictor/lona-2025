@@ -65,7 +65,7 @@ export default function DestaqueSlider({ sessoes, nomeMostra }: DestaqueSliderPr
               direcao={filme.informacoesFilmes?.fichaTecMini || ""}
               data={new Date(info.dataInicial).toLocaleDateString("pt-BR")}
               local={info.local}
-              link={`/mostras/${nomeMostra}/sessao/${proximaSessao.slug}`}
+              link={`${nomeMostra === "acervo" ? `/acervo` : `/mostras/${nomeMostra}`}/sessao/${proximaSessao.slug}`}
             />
           ))}
         </div>
