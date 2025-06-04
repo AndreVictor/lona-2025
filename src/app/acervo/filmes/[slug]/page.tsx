@@ -1,3 +1,4 @@
+export {};
 import PageFilmeAcervo from '@/components/PageFilmeAcervo'
 import {getFilmeAcervo} from '@/utils/getFilmeAcervo'
 import React from 'react'
