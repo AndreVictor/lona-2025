@@ -23,7 +23,7 @@ export default function CardFilmeAcervo({ filme }: { filme: Filme }) {
   const imagem = filme.featuredImage?.node?.sourceUrl || "/img/grafismo.png";
 
   return (
-    <Link href={`/filmes/${filme.slug}`} className="cardFilme__link">
+    <Link href={`/acervo/filmes/${filme.slug}`} className="cardFilme__link">
       <div
         className="cardFilme"
         onMouseEnter={() => setHover(true)}

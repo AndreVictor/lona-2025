@@ -79,9 +79,9 @@ export default function Header() {
               </nav>
             )}
             <div className="header__btn-box">
-              <button className="header__search-btn">
+              {/* <button className="header__search-btn">
                 <Lupa />
-              </button>
+              </button> */}
               <button className={`header__menu-btn ${isMenuOpen ? "is-open" : ""}`} onClick={toggleMenu}>
                 <span>&nbsp;</span>
               </button>

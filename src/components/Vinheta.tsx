@@ -136,7 +136,6 @@ export default function Vinheta() {
       <div
         className="vinheta__bg"
         ref={containerRef}
-        style={{ width: "100%", height: "100%" }}
       />
 
       {!showVideo && (

@@ -40,6 +40,17 @@
   position: absolute;
   inset: 0;
   z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.vinheta__bg canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .vinheta__close-btn {

@@ -1,4 +1,6 @@
+'use client';
 import React from 'react'
+import { useEffect } from 'react';
 import SidebarTerritoriais from './ui/SidebarTerritoriais'
 import ListaTerritoriais from './ui/ListaTerritoriais'
 
@@ -33,6 +35,19 @@ interface PageTerritoriaisProps {
 
 export default function PageTerritoriais({ territoriais, content }: PageTerritoriaisProps) {
   const anchorLinks = territoriais.map((t) => ({ title: t.title, slug: t.slug }))
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const id = hash.replace('#', '');
+      const el = document.getElementById(id);
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
+    }
+  }, []);
 
   return (
     <section className="territoriais">

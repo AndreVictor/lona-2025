@@ -3,8 +3,9 @@ import PageSessao from '@/components/PageSessao';
 import { getSessao } from '@/utils/getSessao';
 import type { Mostras } from '@/utils/getSessao'; // 👈 Importa o tipo corretamente
 
-export default async function SessaoPage({ params }: { params: Promise<{ slug: string; sessaoSlug: string }> }) {
-  const { slug, sessaoSlug } = await params;
+export default async function SessaoPage({ params }: { params: { slug: string; sessaoSlug: string } }) {
+  const { slug, sessaoSlug } = params;
+
   const sessaoData = await getSessao(sessaoSlug, slug as Mostras);
 
   if (!sessaoData) {

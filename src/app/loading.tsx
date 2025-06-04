@@ -4,9 +4,10 @@ import Grafismo from "@/components/ui/Grafismo"
 export default function Loading() {
   return (
     <div className="loading fade-in">
-        <Grafismo/>
+        <Grafismo inverted/>
         <h2 className="archivo condensed uppercase">
-            Carregando, aguarde.
+            Carregando, 
+            <br/>aguarde.
         </h2>
     </div>
   );

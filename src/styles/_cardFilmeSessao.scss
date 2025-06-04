@@ -1,6 +1,7 @@
 .cardFilmeSessao {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid $vermelho;
 
     @include respond(tab-port) {
         grid-template-columns: 1fr;

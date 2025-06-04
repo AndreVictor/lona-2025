@@ -50,37 +50,51 @@ export default function Programacao({ programacoes }: ProgramacaoProps) {
     }
   };
 
-  function gerarLink(item: any) {
-    const categoria = item.informacoesProgramacao.categoria.toLowerCase().replace(/\s+/g, '-');
+function gerarLink(item: any) {
+  const categoria = item.informacoesProgramacao.categoria?.toLowerCase().replace(/\s+/g, '-');
+  const slug = item.slug;
 
-    if (categoria === 'sessoes-territoriais') {
-      const sessao = item.informacoesProgramacao.sessoesTerritoriais?.[0];
-      if (sessao) {
-        return `/sessao-territorial/${sessao.slug}`;
-      }
-    }
+  if (!categoria) return '#';
 
-    if (['homenagem', 'atravessamentos', 'especial', 'acervo', 'abertura'].includes(categoria)) {
-      const sessao = item.informacoesProgramacao.sessoes?.[0];
-      if (sessao) {
-        return `/mostra/${categoria}/${sessao.slug}`;
-      }
-    }
-
-    if (['publicacoes', 'oficinas', 'ciclo-de-conversas', 'podcast'].includes(categoria)) {
-      const formacao =
-        item.informacoesProgramacao.podcast?.[0] ||
-        item.informacoesProgramacao.oficina?.[0] ||
-        item.informacoesProgramacao.publicacao?.[0] ||
-        item.informacoesProgramacao.cicloDeConversa?.[0];
-
-      if (formacao) {
-        return `/formacao/${categoria}#${formacao.slug}`;
-      }
-    }
-
-    return '#';
+  if (categoria.includes('sessões-territoriais')) {
+    const territorial = item.informacoesProgramacao.sessoesTerritoriais?.[0];
+    return territorial ? `/territoriais#${territorial.slug}` : '#';
   }
+
+  if (categoria.includes('podcast')) {
+    const podcast = item.informacoesProgramacao.podcast?.[0];
+    return podcast ? `/formacao/podcast#${podcast.slug}` : '#';
+  }
+
+  if (categoria.includes('oficinas')) {
+    const oficina = item.informacoesProgramacao.oficina?.[0];
+    return oficina ? `/formacao/oficinas#${oficina.slug}` : '#';
+  }
+
+  if (categoria.includes('publicacoes')) {
+    const pub = item.informacoesProgramacao.publicacao?.[0];
+    return pub ? `/formacao/publicacoes#${pub.slug}` : '#';
+  }
+
+  if (categoria.includes('ciclo-de-conversas') || categoria.includes('ciclo-de-conversa')) {
+    const conversa = item.informacoesProgramacao.cicloDeConversa?.[0];
+    return conversa ? `/formacao/ciclo-de-conversas#${conversa.slug}` : '#';
+  }
+
+  if (
+    ['homenagem', 'atravessamentos', 'especial', 'acervo', 'abertura', 'encerramento'].includes(
+      categoria
+    )
+  ) {
+    const sessao = item.informacoesProgramacao.sessoes?.[0];
+    if (!sessao) return '#';
+    return categoria === 'acervo'
+      ? `/acervo/sessao/${sessao.slug}`
+      : `/mostra/${categoria}/${sessao.slug}`;
+  }
+
+  return '#';
+}
 
   const hoje = new Date();
   hoje.setHours(0, 0, 0, 0);

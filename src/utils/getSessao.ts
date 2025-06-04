@@ -185,9 +185,21 @@ export async function getSessao(slug: string, nomeMostra: string) {
 
   const mostraKey = nomeMostra as Mostras;
   const query = queries[mostraKey];
+  // Log antes da query
+  console.log('Buscando dados da sessão com slug:', slug, 'e mostra:', nomeMostra);
   const res = await urqlClient.query(query, { slug }).toPromise();
+  // Log após a query
+  console.log('Resposta bruta da query:', res);
 
-  const dataKey = mostraKey === 'acervo' ? 'mostraacervo' : mostraKey.toLowerCase();
+  const dataKeyMap: Record<Mostras, string> = {
+    atravessamentos: 'atravessamento',
+    homenagem: 'homenagem',
+    especial: 'especial',
+    acervo: 'mostraacervo',
+  };
+
+  const dataKey = dataKeyMap[mostraKey];
+  
   const data = res.data?.[dataKey];
 
   if (res.error || !data) {
