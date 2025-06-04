@@ -2,6 +2,7 @@ import { use } from "react";
 import PageSessao from '@/components/PageSessao';
 import { getSessao } from '@/utils/getSessao';
 import type { Mostras } from '@/utils/getSessao'; // 👈 Importa o tipo corretamente
+import PageSessaoAcervo from "@/components/PageSessaoAcervo";
 
 export default async function SessaoPage({ params }: { params: Promise<{ slug: string; sessaoSlug: string }> }) {
   const { slug, sessaoSlug } = await params;
@@ -12,5 +13,5 @@ export default async function SessaoPage({ params }: { params: Promise<{ slug: s
     return <div>Erro ao carregar os dados da sessão.</div>;
   }
 
-  return <PageSessao sessao={sessaoData} mostra={slug} />;
+  return <PageSessaoAcervo sessao={sessaoData} mostra={slug} />;
 }

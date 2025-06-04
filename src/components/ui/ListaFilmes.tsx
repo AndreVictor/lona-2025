@@ -18,7 +18,9 @@ export default function ListaFilmes({ sessoes, nomeMostra }: ListaFilmesProps) {
       sessao: sessao.title,
       data: info?.dataInicial ? formatDate(info.dataInicial, true) : "",
       local: info?.local || "",
-      link: `/mostras/${nomeMostra}/sessao/${sessao.slug}`
+      link: nomeMostra === "acervo"
+        ? `/acervo/sessao/${sessao.slug}`
+        : `/mostras/${nomeMostra}/sessao/${sessao.slug}`
     })) || []
   });
 

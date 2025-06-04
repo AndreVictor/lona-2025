@@ -11,6 +11,17 @@
         border-bottom: 1px solid $vermelho;               
         position: relative;
         overflow: hidden;
+
+            &:hover {
+                .grafismo {
+                    left: 0 !important;
+                }
+            }
+        
+        .grafismo {
+            left: -100% !important;
+            transition: all .2s ease-in-out;
+        }
     }
 
     &__card-img-box {
@@ -27,16 +38,5 @@
     &__card-title {
         font-size: 2.8rem;
         line-height: 3.2rem;
-    }
-
-    .grafismo {
-        left: -100% !important;
-        transition: all .2s ease-in-out;
-    }
-
-    &:hover {
-        .grafismo {
-            left: 0 !important;
-        }
     }
 }

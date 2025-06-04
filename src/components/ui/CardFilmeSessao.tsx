@@ -10,7 +10,11 @@ type FilmeProps = {
       sourceUrl: string;
     }
   };
-  informacoesFilmes: {
+  informacoesFilmes?: {
+    fichaTecMini: string;
+    fichaTecCompleta: string;
+  };
+  informacoesAcervo?: {
     fichaTecMini: string;
     fichaTecCompleta: string;
   };
@@ -19,6 +23,8 @@ type FilmeProps = {
 
 export default function CardFilmeSessao({ filme }: { filme: FilmeProps }) {
   const imagem = filme.featuredImage?.node?.sourceUrl || grafismo.src;
+  const fichaCompleta = filme.informacoesFilmes?.fichaTecCompleta || filme.informacoesAcervo?.fichaTecCompleta || '';
+  const fichaMini = filme.informacoesFilmes?.fichaTecMini || filme.informacoesAcervo?.fichaTecMini || '';
 
   return (
     <div className="cardFilmeSessao">
@@ -26,7 +32,7 @@ export default function CardFilmeSessao({ filme }: { filme: FilmeProps }) {
         <img src={imagem} alt="" className="cardFilmeSessao__img" />
         <div className="cardFilmeSessao__fichatec-mini">
           FICHA TÉCNICA
-          <div dangerouslySetInnerHTML={{__html:filme.informacoesFilmes.fichaTecCompleta}}></div>
+          <div dangerouslySetInnerHTML={{__html:fichaCompleta}}></div>
         </div>
       </div>
       <div className="cardFilmeSessao__col2">
@@ -34,7 +40,7 @@ export default function CardFilmeSessao({ filme }: { filme: FilmeProps }) {
           {filme.title}
         </h3>
         <div className="cardFilmeSessao__fichatec biz">
-          {filme.informacoesFilmes.fichaTecMini}
+          {fichaMini}
         </div>
         {filme.content && (
           <div 
@@ -47,3 +53,5 @@ export default function CardFilmeSessao({ filme }: { filme: FilmeProps }) {
     </div>
   )
 }
+
+export type { FilmeProps };

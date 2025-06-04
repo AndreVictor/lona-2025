@@ -45,8 +45,8 @@ export default function CardSessao({
             {(() => {
               const filmesConcatenados = filmes.join(" – ");
               const filmesLimitados =
-                filmesConcatenados.length > 75
-                  ? filmesConcatenados.slice(0, 75) + "..."
+                filmesConcatenados.length > 70
+                  ? filmesConcatenados.slice(0, 70) + "..."
                   : filmesConcatenados;
 
               return filmesLimitados
