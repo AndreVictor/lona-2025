@@ -51,11 +51,12 @@ export default function DestaqueSlider({ sessoes, nomeMostra }: DestaqueSliderPr
         font="biz"
       />
       <div className="destaqueSlider__slider">
-        <div className="destaqueSlider__slider-inner" style={{
-          transform: `translateX(-${currentIndex * 100}%)`,
-          display: "flex",
-          transition: "transform 0.3s ease-in-out"
-        }}>
+        <div
+            className="destaqueSlider__slider-inner"
+            style={{
+              transform: `translateX(-${currentIndex * 100}%)`
+            }}
+          >
           {info?.filmes.map((filme: any, index: number) => (
             <DestaqueCard
               key={index}

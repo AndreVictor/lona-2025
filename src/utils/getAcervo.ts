@@ -60,6 +60,9 @@ export async function getAcervo() {
       }
     }
   }
+  page(id: "mostra-acervo", idType: URI) {
+      content
+    }
     }
   `;
 

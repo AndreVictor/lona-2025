@@ -1,0 +1,39 @@
+.territorio {
+    display: grid;
+    grid-template-columns: 6fr 8fr;
+    min-height: 100vh;
+
+    @include respond(tab-port) {
+        grid-template-columns: 1fr;
+    }
+    
+    &__img {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        height: 60vh;
+        object-fit: cover;
+        border: none;
+    }
+
+    &__ficha-tec {
+        padding: 2rem;
+        border-bottom: 1px solid $vermelho;
+    }
+
+    &__galeria {
+        border-bottom: 1px solid $vermelho;
+    }
+
+    &__territorio {
+        border-bottom: 1px solid $vermelho;
+    }
+
+    &__conversas {
+        border-bottom: 1px solid $vermelho;
+    }
+
+    &__producoes {
+        border-bottom: 1px solid $vermelho;
+    }
+}

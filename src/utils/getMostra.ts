@@ -161,7 +161,6 @@ export async function getMostra(nomeMostra: Mostras) {
     throw new Error(`Mostra ${nomeMostra} não encontrada`);
   }
 
-  
   return {
     nodes,
     pageContent: page.content,
