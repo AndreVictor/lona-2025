@@ -116,7 +116,6 @@ export default function Header() {
             <Grafismo inverted />
             <ul>
               <li><Link href="/a-lona" onClick={() => setIsMenuOpen(false)}>A Lona ←</Link></li>
-              <li><Link href="/programacao-geral" onClick={() => setIsMenuOpen(false)}>Programação Geral ←</Link></li>
               <li><Link href="/territoriais" onClick={() => setIsMenuOpen(false)}>Sessões Territoriais ←</Link></li>
               <p className="group">MOSTRAS</p>
               <li><Link href="/mostras/atravessamentos" onClick={() => setIsMenuOpen(false)}>Atravessamentos ←</Link></li>

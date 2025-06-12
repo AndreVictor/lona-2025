@@ -14,11 +14,13 @@ export default function LinkTerritorio({ territorio }: { territorio: any }) {
   return (
     <div className="territorio__links">
       {links.map((link, i) => (
-        <p key={i}>
-          <a href={link.url} target="_blank" rel="noopener noreferrer">
-            {link.texto}
+        <div className='territorio__link-card' key={i}>
+          <a href={link.url} target="_blank" rel="noopener noreferrer"
+            className='archivo condensed uppercase'
+          >
+            → {link.texto}
           </a>
-        </p>
+        </div>
       ))}
     </div>
   )

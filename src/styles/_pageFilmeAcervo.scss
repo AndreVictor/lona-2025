@@ -44,4 +44,71 @@
     &__producoes {
         border-bottom: 1px solid $vermelho;
     }
+
+    &__galeria-slider {
+        position: relative;
+        overflow: hidden;
+        scroll-snap-type: x mandatory;
+    }
+
+    &__galeria-inner {
+        width: 100%;
+        height: 60rem;
+        background-color: black;
+    }
+
+    &__galeria-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        scroll-snap-align: start;
+    }
+
+    &__galeria-control {
+        display: flex;
+        gap: 2rem;
+        justify-content: flex-end;
+        align-items: center;
+        padding-bottom: 4rem;
+        position: relative;
+    }
+
+    &__galeria-bullets {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    &__galeria-bullet {
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        background-color: transparent;
+        border: 1px solid black;
+        cursor: pointer;
+
+        &.active {
+            background-color: $preto;
+        }
+    }
+
+    &__galeria-arrows {
+        display: flex;
+    }
+
+    &__galeria-arrow {
+        background-color: $vermelho;
+        border: none;
+        width: 4rem;
+        height: 4rem;
+        font-size: 2rem;
+        color: $preto;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        
+
+        &:hover {
+                background-color: $preto;
+                color: $vermelho;
+            }
+    }
 }

@@ -21,7 +21,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "wp.mostra-lona.com.br",
+        hostname: "2025wp.mostra-lona.com.br",
         pathname: "/**",
       },
     ],

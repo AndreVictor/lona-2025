@@ -36,4 +36,29 @@
     &__producoes {
         border-bottom: 1px solid $vermelho;
     }
+
+    &__links {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        @include respond(tab-port) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &__link-card {
+        border: 1px solid $vermelho;
+
+        a {
+            font-size: 3.2rem;
+            line-height: 2.8rem;
+            text-decoration: none;
+            padding: 2rem;
+            display: block;
+        }
+
+        &:hover {
+            background-color: black;
+        }
+    }
 }
