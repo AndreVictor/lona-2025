@@ -33,8 +33,8 @@ export default function SidebarSessao({ titulo, mostra, data, local, descricaoHt
       />
       <nav className="sidebarSessao__nav">
         <ul>
-          <li><a className="biz" href="#destaque">→ Filmes</a></li>
-          <li><a className="biz" href="#destaque">→ Conversas</a></li>
+          <li><a className="biz" href="#filmes">→ Filmes</a></li>
+          <li><a className="biz" href="#conversas">→ Conversas</a></li>
         </ul>
       </nav>
     </aside>

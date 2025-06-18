@@ -2,6 +2,7 @@ import React from 'react'
 import SidebarSessao from './ui/SidebarSessao'
 import EmbedFilme from './ui/EmbedFilme'
 import FilmesSessao from './ui/FilmesSessao'
+import ConversasSessao from './ConversasSessao';
 
 type SessaoProps = {
   mostra: string;
@@ -30,6 +31,21 @@ type SessaoProps = {
           fichaTecMini: string;
         };
       }>;
+      conversaRelacionada?: Array<{
+        title: string;
+        content: string;
+        featuredImage?: {
+          node: {
+            sourceUrl: string;
+          };
+        };
+        informacoesConversas: {
+          data?: string;
+          embed?: string;
+          participantes?: string;
+          local?: string;
+        };
+      }>;
     };
   };
 };
@@ -51,6 +67,7 @@ export default function PageSessao({ sessao, mostra }: SessaoProps) {
           dataFinal={sessao.informacoesSessao?.dataFinal}
         />
         <FilmesSessao filmes={sessao.informacoesSessao?.filmes ?? []} />
+        <ConversasSessao conversas={sessao.informacoesSessao?.conversaRelacionada ?? []} />
       </div>
     </section>
   )

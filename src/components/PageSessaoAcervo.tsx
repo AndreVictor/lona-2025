@@ -2,6 +2,7 @@ import React from 'react'
 import SidebarSessao from './ui/SidebarSessao'
 import EmbedFilme from './ui/EmbedFilme'
 import FilmesSessao from './ui/FilmesSessao'
+import ConversasSessao from './ConversasSessao';
 
 type SessaoAcervoProps = {
   mostra: string;
@@ -30,6 +31,21 @@ type SessaoAcervoProps = {
           fichaTecMini: string;
         };
       }>;
+      conversasRelacionadas?: Array<{
+        title: string;
+        content: string;
+        featuredImage?: {
+          node: {
+            sourceUrl: string;
+          };
+        };
+        informacoesConversas: {
+          data?: string;
+          embed?: string;
+          participantes?: string;
+          local?: string;
+        };
+      }>;
     };
   };
 };
@@ -51,6 +67,7 @@ export default function PageSessaoAcervo({ sessao, mostra }: SessaoAcervoProps) 
           dataFinal={sessao.informacoesMostraAcervo?.dataFinal}
         />
         <FilmesSessao filmes={sessao.informacoesMostraAcervo?.filmes ?? []} />
+        <ConversasSessao conversas={sessao.informacoesMostraAcervo?.conversasRelacionadas ?? []} />
       </div>
     </section>
   )
