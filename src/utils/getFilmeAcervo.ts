@@ -35,6 +35,7 @@ export async function getFilmeAcervo(slug: string) {
           territorio {
             ... on Territorio {
               title
+              slug
               content
               featuredImage { node { sourceUrl } }
               informacoesTerritorio {

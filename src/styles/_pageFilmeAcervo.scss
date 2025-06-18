@@ -111,4 +111,49 @@
                 color: $vermelho;
             }
     }
+
+    &__territorio-card {
+        position: relative;
+        overflow: hidden;
+
+        &:hover {
+            .grafismo {
+                left: 0 !important;
+            }
+        }
+
+    }
+
+    &__territorio-card a {
+        text-decoration: none;
+        color: $preto;
+
+        .grafismo {
+            top: 0 !important;
+            left: -100% !important;
+            transition: all .2s ease-in-out;
+        }
+    }
+
+    &__territorio-img img {
+        width: 100%;
+        height: 50rem;
+        object-fit: cover;
+    }
+
+    &__territorio-content {
+        padding: 2rem;
+    }
+
+    &__territorio-title {
+        font-size: 3.6rem;
+        line-height: 3.6rem;
+        margin-bottom: 1rem;
+    }
+
+    &__territorio-localizacao {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        
+    }
 }
